@@ -89,7 +89,7 @@ class Cadeau
         return $this->date_expiration;
     }
 
-    public function setDateExpiration(\DateTimeImmutable $date_expiration): static
+    public function setDateExpiration(\DateTimeImmutable $date_expiration)
     {
         $this->date_expiration = $date_expiration;
 
