@@ -1,0 +1,57 @@
+gmp-map {
+  height: 100em;
+}
+
+.content {
+  width: 50%;
+  height: 5vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+#map {
+  z-index: 0;
+  height: 100vh;
+}
+
+.burger {
+  z-index: 1;
+  bottom: 5em;
+  left: 5em;
+  width: 7em;
+  height: 7em;
+  border-radius: 45px;
+  background-color: grey;
+  position: fixed;
+  border: 0.2em solid black;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.contain_burger_line {
+  margin: 0 auto;
+  height: 0.6rem;
+  width: 70%;
+  background-color: black;
+}
+
+.geoloc {
+  z-index: 1;
+  bottom: 5em;
+  right: 5em;
+  width: 7em;
+  height: 7em;
+  border-radius: 45px;
+  background-color: grey;
+  position: fixed;
+  border: 0.2em solid black;
+  display: flex;
+}
+
+.geoloc-loc {
+  width: 110%;
+  margin: auto;
+}
