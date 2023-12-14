@@ -30,6 +30,9 @@ class CommentairesLieu
     #[ORM\JoinColumn(nullable: false)]
     private ?User $membre = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $lieu_gps = null;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
@@ -89,6 +92,18 @@ class CommentairesLieu
     public function setMembre(?User $membre): static
     {
         $this->membre = $membre;
+
+        return $this;
+    }
+
+    public function getLieuGps(): ?array
+    {
+        return $this->lieu_gps;
+    }
+
+    public function setLieuGps( string $lieu_gps): static
+    {
+        $this->lieu_gps = $lieu_gps;
 
         return $this;
     }
