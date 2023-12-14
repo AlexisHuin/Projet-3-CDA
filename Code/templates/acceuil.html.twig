@@ -3,12 +3,28 @@
 {% block title %}
 	L'accueil
 {% endblock %}
-
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
+{% endblock %}
 {% block javascripts %}
 	<script src="{{ asset('js/map.js') }}" defer></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoc1qm_wW4HH6HfN3hty-_yl7XOg74g4o&callback=initMap&v=weekly" defer></script>
 {% endblock %}
 
 {% block body %}
-	<div id="map" style="height:100vh;"></div>
+	<div id="map"></div>
+	<div class="content position-absolute top-0 end-0">
+		<form class="d-flex mt-4 me-2">
+			<input class="form-control me-sm-2 fs-2 text" type="search" placeholder="Rechercher">
+			<button class="btn btn-secondary my-2 my-sm-0 fs-2 text " type="submit">Rechercher</button>
+		</form>
+	</div>
+	<div class="burger">
+		<div class="contain_burger_line"></div>
+		<div class="contain_burger_line"></div>
+		<div class="contain_burger_line"></div>
+	</div>
+		<div class="geoloc">
+		<img class="geoloc-loc" src="{{ asset('img/geo.png') }}" alt="Icone géolocalisation">
+		</div>
 {% endblock %}
