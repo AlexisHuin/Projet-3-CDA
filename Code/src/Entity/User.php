@@ -78,12 +78,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
@@ -172,7 +166,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->created_at;
     }
-
     /**
      * @return Collection<int, Itineraire>
      */
@@ -290,3 +283,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 }
+
+
+
+
