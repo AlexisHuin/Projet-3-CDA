@@ -4,6 +4,11 @@
 	L'accueil
 {% endblock %}
 
+{% block javascripts %}
+	<script src="{{ asset('js/map.js') }}" defer></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoc1qm_wW4HH6HfN3hty-_yl7XOg74g4o&callback=initMap&v=weekly" defer></script>
+{% endblock %}
+
 {% block body %}
-	<gmp-map center="47.583328,1.33333" zoom="12" map-id="DEMO_MAP_ID"></gmp-map>
+	<div id="map" style="height:100vh;"></div>
 {% endblock %}

@@ -1,0 +1,37 @@
+function calculateBounds(center,) {
+    var bounds = new google.maps.LatLngBounds();
+    var northEast = new google.maps.LatLng(
+        center.lat() + 1,
+        center.lng() + 3
+    );
+    var southWest = new google.maps.LatLng(
+        center.lat() - 1,
+        center.lng() - 3
+    );
+
+    bounds.extend(northEast);
+    bounds.extend(southWest);
+
+    return bounds;
+}
+
+async function initMap() {
+    const zoom = 7.75;
+    var center = new google.maps.LatLng(47.363, 0.6);
+    new google.maps.Map(document.getElementById("map"), {
+        zoom,
+        center,
+        minZoom: zoom,
+        disableDefaultUI: true,
+        restriction: {
+            latLngBounds: calculateBounds(center).toJSON()
+        },
+        styles: [
+            {
+                featureType: 'poi',
+                elementType: 'labels',
+                stylers: [{ visibility: 'off' }]
+            }
+        ]
+    });
+} 
