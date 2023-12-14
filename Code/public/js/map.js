@@ -1,12 +1,12 @@
 function calculateBounds(center,) {
     var bounds = new google.maps.LatLngBounds();
     var northEast = new google.maps.LatLng(
-        center.lat() + 1,
-        center.lng() + 3
+        center.lat() + 0.75,
+        center.lng() + 3.25
     );
     var southWest = new google.maps.LatLng(
-        center.lat() - 1,
-        center.lng() - 3
+        center.lat() - 0.75,
+        center.lng() - 3.25
     );
 
     bounds.extend(northEast);
@@ -16,7 +16,7 @@ function calculateBounds(center,) {
 }
 
 async function initMap() {
-    const zoom = 7.75;
+    const zoom = 8.25;
     var center = new google.maps.LatLng(47.363, 0.6);
     new google.maps.Map(document.getElementById("map"), {
         zoom,
