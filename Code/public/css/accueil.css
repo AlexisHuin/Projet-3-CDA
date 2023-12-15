@@ -36,6 +36,22 @@ gmp-map {
   height: 0.6rem;
   width: 70%;
   background-color: black;
+  position: absolute;
+}
+
+#line1 {
+  top: 1rem;
+  left: 1rem;
+}
+
+#line2 {
+  top: 5rem;
+  left: 1rem;
+}
+
+#line3 {
+  bottom: 3rem;
+  left: 1rem;
 }
 
 .geoloc {
@@ -52,6 +68,13 @@ gmp-map {
 }
 
 .geoloc-loc {
+  display: block;
+  width: 110%;
+  margin: auto;
+}
+
+.geoloc-loc_blue {
+  display: none;
   width: 110%;
   margin: auto;
 }
