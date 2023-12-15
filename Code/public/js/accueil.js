@@ -24,24 +24,32 @@
     let line2 = document.getElementById("line2");
     let line3 = document.getElementById("line3");
 
-    if (line1.style.transform === "rotate(-45deg)") {
+    if (line1.style.transform === "rotate(-45deg)") { // is X, transform back to burger
+
       line1.style.transform = "rotate(0deg)";
       line1.style.top = "1rem";
-      line2.style.top = "5rem";
-      line3.style.top = "3rem";
       line1.style.left = "1rem";
-      line2.style.left = "1rem";
-      line3.style.left = "1rem";
+
+      line2.style.top = "5rem";
       line2.style.opacity = "1";
+      line2.style.left = "1rem";
+
+      line3.style.top = "3rem";
+      line3.style.left = "1rem";
       line3.style.transform = "rotate(0deg)";
-    } else {
+
+    } else { // is burger, transform to X
+
+      line2.style.opacity = "0";
+
       line1.style.transform = "rotate(-45deg)";
       line1.style.top = "3rem";
-      line2.style.opacity = "0";
+      line1.style.transition = "0.25s";
+
       line3.style.transform = "rotate(45deg)";
       line3.style.bottom = "3rem";
-      line1.style.transition = "0.5s";
-      line3.style.transition = "0.5s";
+      line3.style.transition = "0.25s";
+
     }
   });
 })();
