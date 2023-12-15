@@ -14,6 +14,14 @@
 
 {% block body %}
 	<div id="map"></div>
+	<nav id="nav">
+	<img src="{{ asset('img/user.svg') }}" alt="Profil">
+	<img src="{{ asset('img/map.svg') }}" alt="Itinéraire">
+	<img src="{{ asset('img/group.svg') }}" alt="Géolocalisation">
+	<img src="{{ asset('img/gift.svg') }}" alt="Cadeaux">
+	<img src="{{ asset('img/balance.svg') }}" alt="Mentions générales">
+
+	</nav>
 	<div class="content position-absolute top-0 end-0">
 		<form class="d-flex mt-4 me-2">
 			<input class="form-control me-sm-2 fs-2 text" type="search" placeholder="Rechercher">

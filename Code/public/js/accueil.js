@@ -54,5 +54,17 @@
   });
 })();
 
-
+(function displayNav() {
+    let nav = document.querySelector('#nav');
+    let burger = document.querySelector(".burger")
+    burger.addEventListener('click', () => {
+        if (nav.style.display === "flex") {
+            nav.classList.remove('nav-visible')
+            nav.style.display = "none";
+          } else {
+            nav.classList.toggle('nav-visible');
+            nav.style.display = "flex";
+            }  
+    })
+}) ();
 
