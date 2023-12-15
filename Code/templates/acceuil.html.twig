@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
 {% endblock %}
 {% block javascripts %}
+	<script src="{{ asset('js/accueil.js') }}" defer></script>
 	<script src="{{ asset('js/map.js') }}" defer></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoc1qm_wW4HH6HfN3hty-_yl7XOg74g4o&callback=initMap&v=weekly" defer></script>
 {% endblock %}
@@ -20,11 +21,13 @@
 		</form>
 	</div>
 	<div class="burger">
-		<div class="contain_burger_line"></div>
-		<div class="contain_burger_line"></div>
-		<div class="contain_burger_line"></div>
+		<div class="contain_burger_line" id="line1"></div>
+		<div class="contain_burger_line" id="line2"></div>
+		<div class="contain_burger_line" id="line3"></div>
 	</div>
-		<div class="geoloc">
+	<div class="geoloc">
 		<img class="geoloc-loc" src="{{ asset('img/geo.png') }}" alt="Icone géolocalisation">
-		</div>
+		<img class="geoloc-loc_blue" src="{{ asset('img/geo-blue.png') }}" alt="Icone géolocalisation">
+	</div>
+
 {% endblock %}
