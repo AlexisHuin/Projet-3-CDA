@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -53,6 +54,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Cadeau::class, mappedBy: 'membre')]
     private Collection $cadeaux;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $favorite_places = null;
+
+    #[ORM\Column]
+    private ?int $gift_points = null;
+
     public function __construct()
     {
         $this->itineraires = new ArrayCollection();
@@ -60,6 +67,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->commentairesLieus = new ArrayCollection();
         $this->cadeaux = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
+        $this->gift_points = 0;
+        $this->avatar_url = "default.webp";
+        $this->roles = ['ROLE_USER'];
     }
 
     public function getId(): ?int
@@ -279,6 +289,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->cadeaux->removeElement($cadeaux)) {
             $cadeaux->removeMembre($this);
         }
+
+        return $this;
+    }
+
+    public function getFavoritePlaces(): ?string
+    {
+        return $this->favorite_places;
+    }
+
+    public function setFavoritePlaces(?string $favorite_places): static
+    {
+        $this->favorite_places = $favorite_places;
+
+        return $this;
+    }
+
+    public function getGiftPoints(): ?int
+    {
+        return $this->gift_points;
+    }
+
+    public function setGiftPoints(int $gift_points): static
+    {
+        $this->gift_points = $gift_points;
 
         return $this;
     }

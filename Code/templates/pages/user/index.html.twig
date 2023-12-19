@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Mon profil
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/user/profile.css') }}">
+
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<a href="/">← Retour</a>
+
+		<h1 class="mt-4">Mon profil</h1>
+
+		<div class="userinfo">
+			<img src="{{ asset('user_imgs/avatars/' ~ app.user.getAvatarUrl()) }}" alt="">
+			<p>Vous avez publié
+				<strong>{{comm_count}}</strong>
+				comentaires</p>
+			<p>
+				<strong>Email :</strong>
+				{{app.user.email}}</p>
+			<p>
+				<strong>Date d'inscription :</strong>
+				{{app.user.createdAt|date('d/m/Y')}}</p>
+		</div>
+
+		<div class="action_buttons">
+			<a href="{{path('user.favorite_places')}}">
+				<span>Mes lieux favoris</span>
+			</a>
+			<a href="{{path('user.settings')}}">
+				<span>Paramètres de mon compte</span>
+			</a>
+			<a href="{{path('user.gifts')}}">
+				<span>Mes cadeaux</span>
+			</a>
+		</div>
+
+	</div>
+{% endblock %}
