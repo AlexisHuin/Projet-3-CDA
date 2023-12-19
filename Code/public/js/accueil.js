@@ -24,7 +24,8 @@
     let line2 = document.getElementById("line2");
     let line3 = document.getElementById("line3");
 
-    if (line1.style.transform === "rotate(-45deg)") { // is X, transform back to burger
+    if (line1.style.transform === "rotate(-45deg)") {
+      // is X, transform back to burger
 
       line1.style.transform = "rotate(0deg)";
       line1.style.top = "1rem";
@@ -37,8 +38,8 @@
       line3.style.top = "3rem";
       line3.style.left = "1rem";
       line3.style.transform = "rotate(0deg)";
-
-    } else { // is burger, transform to X
+    } else {
+      // is burger, transform to X
 
       line2.style.opacity = "0";
 
@@ -49,24 +50,29 @@
       line3.style.transform = "rotate(45deg)";
       line3.style.bottom = "3rem";
       line3.style.transition = "0.25s";
-
     }
   });
 })();
 
 (function displayNav() {
-    let nav = document.querySelector('#nav');
-    let burger = document.querySelector(".burger")
-    burger.addEventListener('click', () => {
-        if (nav.style.display === "flex") {
-            nav.classList.remove('nav-visible')
-            nav.style.display = "none";
-          } else {
-            nav.classList.toggle('nav-visible');
-            nav.style.display = "flex";
-            }  
-    })
-}) ();
+  let nav = document.querySelector("#nav");
+  let logoPlace = document.querySelector("#logo");
+  let burger = document.querySelector(".burger");
 
+  burger.addEventListener("click", () => {
+    nav.classList.toggle("nav-visible");
+    if (nav.style.display === "flex") {
+      logoPlace.innerHTML = "";
+      nav.style.display = "none";
+    } else {
+      nav.style.display = "flex";
+      let logo = document.createElement("img");
+      logo.src = "img/logoVDL.png";
+      logo.alt = "Logo Val De Loire";
+      logo.style.borderRadius = '2em';
+      logo.style.width = '89%'
+      logoPlace.appendChild(logo);
 
-
+    }
+  });
+})();
