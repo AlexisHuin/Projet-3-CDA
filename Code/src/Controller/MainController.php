@@ -11,7 +11,7 @@ class MainController extends AbstractController
     #[Route('/', name: 'main.index', methods: ['GET'])]
     public function index(): Response
     {
-        return $this->render('acceuil.html.twig', [
+        return $this->render('pages/acceuil.html.twig', [
             'random_number' => rand(0, 100)
         ]);
     }

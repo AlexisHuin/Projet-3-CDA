@@ -1,33 +1,98 @@
-gmp-map {
-  height: 100em;
+body {
+  height: 100dvh;
 }
-
 .content {
-  width: 50%;
+  width: 30%;
   height: 5vh;
   position: fixed;
   right: 0;
   top: 0;
   z-index: 1;
+  }
+
+  #staticBackdrop {
+    top: 115em;
+      
+  }
+#modalHeader {
+  display: flex;
 }
 
+#modalHeader > h1,
+#modalHeader > input{
+  flex: 1;
+}
+  #modalWidth {
+    width: 59em;
+    left: 1em;
+    position: fixed;
+    height: 69em;
+    bottom: 1em;
+}
+  
+  
+  #modaleTransition {
+    transition: none;
+  }
+  #modalBody {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+  }
+  
+  .block {
+    background-color: pink;
+    width: calc(50% - 1em);
+    margin: 0.5em;
+    box-sizing: border-box;
+    height: 10em;
+  }
+  .modal-footer>button {
+    flex: 1;
+  }
 #map {
   z-index: 0;
-  height: 100vh;
+  height: 100%;
+}
+#nav {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 8em;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background-color: rgba(0, 0, 0, 0.392);
+  height: 90em;
+  width: 15em;
+  border-radius: 2em;
+  margin: 0 0 0 1em;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.burger {
+#nav > img {
+  margin: auto;
+  width: 8em;
+  /* margin-bottom: 3em; */
+}
+
+.bottom_button {
   z-index: 1;
-  bottom: 5em;
-  left: 5em;
   width: 7em;
   height: 7em;
   border-radius: 45px;
-  background-color: grey;
+  background-color: rgba(0, 0, 0, 0.392);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   position: fixed;
   border: 0.2em solid black;
   display: flex;
   flex-wrap: wrap;
+}
+
+.burger {
+  bottom: 5em;
+  left: 5em;
   align-items: center;
 }
 
@@ -36,22 +101,39 @@ gmp-map {
   height: 0.6rem;
   width: 70%;
   background-color: black;
+  position: absolute;
+}
+
+#line1 {
+  top: 1rem;
+  left: 1rem;
+}
+
+#line2 {
+  top: 5rem;
+  left: 1rem;
+}
+
+#line3 {
+  bottom: 3rem;
+  left: 1rem;
 }
 
 .geoloc {
-  z-index: 1;
   bottom: 5em;
   right: 5em;
-  width: 7em;
-  height: 7em;
-  border-radius: 45px;
-  background-color: grey;
-  position: fixed;
-  border: 0.2em solid black;
-  display: flex;
 }
 
 .geoloc-loc {
+  display: block;
   width: 110%;
   margin: auto;
 }
+
+.geoloc-loc_blue {
+  display: none;
+  width: 110%;
+  margin: auto;
+}
+
+

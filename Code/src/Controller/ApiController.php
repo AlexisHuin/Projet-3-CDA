@@ -1,60 +1,46 @@
-<?php
 
-namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Component\Routing\Annotation\Route;
+    // #[Route('/search', name: 'api.search', methods: ['GET'])]
+    // public function searchApi(string $query)
+    // {
+    //     $apiUrl = 'https://opentripmap-places-v1.p.rapidapi.com/en/places/bbox?lon_max=2.325511&lat_min=46.784633&lon_min=-1.75033&lat_max=48.199482&limit=1000&kinds=historic';
 
-#[Route('/api')]
-class ApiController extends AbstractController
-{
-    private HttpClientInterface $client;
+    //     try {
+    //         $response = $this->client->request('GET', $apiUrl, [
+    //             'query' => [
+    //                 'q' => $query,
+    //             ],
+    //             'headers' => [
+    //                 'X-RapidAPI-Host' => 'opentripmap-places-v1.p.rapidapi.com',
+    //                 'X-RapidAPI-Key' => 'a0da21aed5mshc79b166d2ac2bbdp1f12a8jsn024a611abaf3',
+    //             ],
+    //         ]);
 
-    public function __construct(HttpClientInterface $client)
-    {
-        $this->client = $client;
-    }
+    //         if ($response->getStatusCode() !== 200) {
+    //             return new JsonResponse(['error' => 'Failed to fetch search results'], $response->getStatusCode());
+    //         }
 
-    #[Route('/get_place', name: 'api.get_place', methods: ['GET'])]
-    public function getPlace()
-    {
-        $response = $this->client->request(
-            'GET',
-            'https://opentripmap-places-v1.p.rapidapi.com/en/places/xid/W223828303',
-            [
-                'headers' => [
-                    'X-RapidAPI-Host' => 'opentripmap-places-v1.p.rapidapi.com',
-                    'X-RapidAPI-Key' => 'a0da21aed5mshc79b166d2ac2bbdp1f12a8jsn024a611abaf3',
-                ],
-                'max_redirects' => 200,
-            ]
-        );
+    //         // Récupérez les données JSON de la réponse
+    //         $data = $response->toArray();
+            
+    //         foreach ($data['features'] as $place) {
+    //             $name = $place['properties']['name'];
+    //             $kinds = $place['properties']['kinds'];
+    //             $web = $place['properties']['rate'] ?? '';
+    //             $preview = $place['properties']['image'] ?? '';
+    //             $info = $place['properties']['wikidata'] ?? '';
 
-        $data = $response->getContent(); 
-        dd ($data);
-        return new JsonResponse($data , 200 , [] , true);
-    }
+    //             echo 'Name: ' . $name . '<br>';
+    //             echo 'kinds ' .  $kinds . '<br>';
+    //             echo 'Web: ' . $web . '<br>';
+    //             echo 'Preview: ' . $preview . '<br>';
+    //             echo 'Info: ' . $info . '<br>';
+    //         }
 
-    #[Route('/get_places', name: 'api.get_places', methods: ['GET'])]
-    public function getPlaces()
-    {
-        $response = $this->client->request(
-            'GET',
-            'https://opentripmap-places-v1.p.rapidapi.com/en/places/bbox?lon_max=2.325511&lat_min=46.784633&lon_min=-1.75033&lat_max=48.199482&limit=10',
-            [
-                'headers' => [
-                    'X-RapidAPI-Host' => 'opentripmap-places-v1.p.rapidapi.com',
-                    'X-RapidAPI-Key' => 'a0da21aed5mshc79b166d2ac2bbdp1f12a8jsn024a611abaf3',
-                ],
-                'max_redirects' => 200,
-            ]
-        );
-        $data = json_decode($response->getContent(),true);
-
-         return $this->render('api/index.html.twig', ['data' => $data]);
-    }
-    
-
+    //         return new JsonResponse(['results' => $data]);
+    //     } catch (\Exception $e) {
+    //         // Gérez les erreurs en fonction de vos besoins
+    //         return new JsonResponse(['error' => 'An error occurred: ' . $e->getMessage()], 500);
+    //     }
+    // }
 }
