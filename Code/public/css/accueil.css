@@ -22,11 +22,11 @@ body {
   flex: 1;
 }
 #modalWidth {
-  width: 59em;
-  left: 1em;
+  width: 100vw;
   position: fixed;
-  height: 69em;
-  bottom: 1em;
+  left: 0;
+  bottom: 0;
+  height: 65vh;
 }
 
 #modaleTransition {
@@ -60,16 +60,22 @@ body {
   margin-left: 1em;
 }
 
+#logo>img {
+  width: 20vw;
+  height: auto;
+  border-radius: 2em;
+}
+
 #nav {
   display: none;
   position: fixed;
   z-index: 1;
-  left: 8em;
+  left: calc(4.5vw + 5em);
   top: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.392);
-  height: 90em;
-  width: 15em;
+  height: 55vh;
+  width: 12vw;
   border-radius: 2em;
   margin: 0 0 0 1em;
   flex-direction: column;
@@ -79,7 +85,7 @@ body {
 
 #nav > a{
   margin: auto;
-  width: 8em;
+  width: 5em;
   }
   #nav a img {
 width: 100%;

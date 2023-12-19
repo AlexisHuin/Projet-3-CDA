@@ -1,12 +1,32 @@
 // Fonction pour géré l'état du bouton de géolocalisation
-
 (function switchGeo() {
   let geoloc = document.querySelector(".geoloc");
   let geoIcon = document.querySelector(".geoloc-loc");
   let geoIconBlue = document.querySelector(".geoloc-loc_blue");
-
+  
   geoloc.addEventListener("click", () => {
     if (geoIcon.style.display !== "none") {
+      var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      };
+      
+      function success(pos) {
+        var crd = pos.coords;
+      
+        console.log("Votre position actuelle est :");
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude : ${crd.longitude}`);
+        console.log(`La précision est de ${crd.accuracy} mètres.`);
+      }
+      
+      function error(err) {
+        console.warn(err);
+      }
+      
+      navigator.geolocation.getCurrentPosition(success, error, options);
+
       geoIcon.style.display = "none";
       geoIconBlue.style.display = "block";
     } else {
@@ -69,8 +89,7 @@
       let logo = document.createElement("img");
       logo.src = "img/logoVDL.png";
       logo.alt = "Logo Val De Loire";
-      logo.style.borderRadius = '2em';
-      logo.style.width = '89%'
+
       logoPlace.appendChild(logo);
 
     }
