@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cadeaux
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/gift.css') }}">
+{% endblock %}
+{% block body %}
+	<header>
+		<div class="nav_gift">
+			<div class="nav_gift-logo">
+				<img id="logo" src="{{ asset('img/logoVDL.png') }}" alt="Logo Val De Loire">
+				<a class="logoReturn" href="#">
+					<img class="" src="{{ asset('img/return.png') }}" alt="Retour">
+				</a>
+			</div>
+			<div class="researchBar">
+				<input class="ms-2 fs-2 text" type="text" placeholder="Quels cadeaux ?">
+				<button type="button" class="ms-1 btn btn-secondary fs-2 text">Rechercher</button>
+			</header>
+
+
+			<main>
+				<div class="condition"></div>
+
+				<button type="button" class="buttonMod btn btn-secondary fs-2 text mt-2 mx-auto text-center  mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Filtrer</button>
+				{# Modale pour filtré les catégorie #}
+				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					<div id="modaleTransition" class="modal-dialog">
+						<div id="modalWidth" class="modal-content">
+							<div id="modalHeader" class="modal-header">
+								<h1 class="modal-title  fs-1 text fw-bold" id="staticBackdropLabel">Catégorie Cadeau</h1>
+							</div>
+							<div id="modalBody" class="modal-body">
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary fs-1 text" data-bs-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary fs-1 text">Valider</button>
+							</div>
+						</div>
+					</div>
+				</div>
+        {# Fin de la modale pour filter les catégories #}
+        <div class="block_gift mx-auto mt-4">
+        <div class="block_gift-l">
+        <h1>Titre article</h1>
+        <p>Description article </p> 
+        </div>
+        <div class="block_gift-r">
+        <img src="{{ asset('img/logoVDL.png') }}" alt="">
+        </div>
+        </div>
+        <div class="block_gift mx-auto mt-4">
+        <div class="block_gift-l">
+        <h1>Titre article</h1>
+        <p>Description article </p> 
+        </div>
+        <div class="block_gift-r">
+        <img src="{{ asset('img/logoVDL.png') }}" alt="">
+        </div>
+        </div>
+        <div class="block_gift mx-auto mt-4">
+        <div class="block_gift-l">
+        <h1>Titre article</h1>
+        <p>Description article </p> 
+        </div>
+        <div class="block_gift-r">
+        <img src="{{ asset('img/logoVDL.png') }}" alt="">
+        </div>
+        </div>
+        <div class="block_gift mx-auto mt-4">
+        <div class="block_gift-l">
+        <h1>Titre article</h1>
+        <p>Description article </p> 
+        </div>
+        <div class="block_gift-r">
+        <img src="{{ asset('img/logoVDL.png') }}" alt="">
+        </div>
+        </div>
+			</main>
+		{% endblock %}
