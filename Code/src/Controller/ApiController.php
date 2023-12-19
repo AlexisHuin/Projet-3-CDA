@@ -1,4 +1,4 @@
-
+<?php
 
     // #[Route('/search', name: 'api.search', methods: ['GET'])]
     // public function searchApi(string $query)
@@ -43,4 +43,5 @@
     //         return new JsonResponse(['error' => 'An error occurred: ' . $e->getMessage()], 500);
     //     }
     // }
-}
+
+?>

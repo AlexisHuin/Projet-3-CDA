@@ -69,4 +69,39 @@
 }) ();
 
 
+// Créer une fonction asynchrone pour gérer la requête et le traitement des données
+async function fetchAndDisplayPlaces() {
+  try {
+    
+    const response = await fetch('https://opentripmap-places-v1.p.rapidapi.com/en/places/bbox?lon_max=2.325511&lat_min=46.784633&lon_min=-1.75033&lat_max=48.199482&limit=20', {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Host': 'opentripmap-places-v1.p.rapidapi.com',
+        'X-RapidAPI-Key': 'a0da21aed5mshc79b166d2ac2bbdp1f12a8jsn024a611abaf3',
+      }
+    });
 
+    // Vérifier si la requête est réussie (statut HTTP 200)
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    // Parser la réponse en JSON
+    const data = await response.json();
+    
+    // Ajouter des marqueurs pour chaque lieu
+    data.features.forEach(place => {
+      const latitude = place.geometry.coordinates[1];
+      const longitude = place.geometry.coordinates[0];
+      const name = place.properties.name;
+
+      L.marker([latitude, longitude]).addTo(map).bindPopup(name);
+    });
+
+  } catch (error) {
+    console.error('Erreur lors de la récupération des données:', error);
+  }
+}
+
+// Appeler la fonction pour démarrer le processus
+fetchAndDisplayPlaces();
