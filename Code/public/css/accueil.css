@@ -8,59 +8,65 @@ body {
   right: 0;
   top: 0;
   z-index: 1;
-  }
+}
 
-  #staticBackdrop {
-    top: 115em;
-      
-  }
+#staticBackdrop {
+  top: 115em;
+}
 #modalHeader {
   display: flex;
 }
 
 #modalHeader > h1,
-#modalHeader > input{
+#modalHeader > input {
   flex: 1;
 }
-  #modalWidth {
-    width: 59em;
-    left: 1em;
-    position: fixed;
-    height: 69em;
-    bottom: 1em;
+#modalWidth {
+  width: 59em;
+  left: 1em;
+  position: fixed;
+  height: 69em;
+  bottom: 1em;
 }
-  
-  
-  #modaleTransition {
-    transition: none;
-  }
-  #modalBody {
-    display: flex;
-    flex-wrap: wrap;
-    overflow: auto;
-  }
-  
-  .block {
-    background-color: pink;
-    width: calc(50% - 1em);
-    margin: 0.5em;
-    box-sizing: border-box;
-    height: 10em;
-  }
-  .modal-footer>button {
-    flex: 1;
-  }
+
+#modaleTransition {
+  transition: none;
+}
+#modalBody {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+.block {
+  background-color: pink;
+  width: calc(50% - 1em);
+  margin: 0.5em;
+  box-sizing: border-box;
+  height: 10em;
+}
+.modal-footer > button {
+  flex: 1;
+  padding: 0.7em;
+}
 #map {
   z-index: 0;
   height: 100%;
 }
+#logo {
+  z-index: 1;
+  position: fixed;
+  top: 2em;
+  margin-left: 1em;
+}
+
 #nav {
   display: none;
   position: fixed;
   z-index: 1;
   left: 8em;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.392);
   height: 90em;
   width: 15em;
@@ -71,11 +77,13 @@ body {
   justify-content: center;
 }
 
-#nav > img {
+#nav > a{
   margin: auto;
   width: 8em;
-  /* margin-bottom: 3em; */
-}
+  }
+  #nav a img {
+width: 100%;
+  }
 
 .bottom_button {
   z-index: 1;
@@ -135,5 +143,3 @@ body {
   width: 110%;
   margin: auto;
 }
-
-

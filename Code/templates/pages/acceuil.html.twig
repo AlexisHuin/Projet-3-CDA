@@ -16,22 +16,22 @@
 	<div id="map"></div>
 	<div class="content position-absolute top-0 end-0 mt-4 me-4 ">
 		<input id="searchBar" class="form-control me-sm-2 fs-1 text" data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="search" placeholder="Rechercher">
-			</div>
+	</div>
+	<div id="logo"></div>
 	<nav id="nav">
-		<img src="{{ asset('img/user.svg') }}" alt="Profil">
-		<img src="{{ asset('img/map.svg') }}" alt="Itinéraire">
-		<img src="{{ asset('img/group.svg') }}" alt="Géolocalisation">
-		<img src="{{ asset('img/gift.svg') }}" alt="Cadeaux">
-		<img src="{{ asset('img/balance.svg') }}" alt="Mentions générales">
+		<a href="{{ path('user.index') }}"><img src="{{ asset('img/user.svg') }}" alt="Profil"></a>
+		<a href="{{ path('main.index') }}"><img src="{{ asset('img/map.svg') }}" alt="Itinéraire"></a>
+		<a href="{{ path('main.index') }}"><img src="{{ asset('img/group.svg') }}" alt="Géolocalisation"></a>
+		<a href="{{ path('main.index') }}"><img src="{{ asset('img/gift.svg') }}" alt="Cadeaux"></a>
+		<a href="{{ path('main.index') }}"><img src="{{ asset('img/balance.svg') }}" alt="Mentions générales"></a>
 	</nav>
-
 	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div id="modaleTransition"class="modal-dialog">
+		<div id="modaleTransition" class="modal-dialog">
 			<div id="modalWidth" class="modal-content">
 				<div id="modalHeader" class="modal-header">
 					<h1 class="modal-title  fs-1 text fw-bold" id="staticBackdropLabel">Catégories</h1>
 					<input class="fs-1 text me-1" type="text" placeholder="Quels lieux ?">
-					</div>
+				</div>
 				<div id="modalBody" class="modal-body">
 					<div class="block"></div>
 					<div class="block"></div>
@@ -51,7 +51,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="bottom_button burger">
 		<div class="contain_burger_line" id="line1"></div>
 		<div class="contain_burger_line" id="line2"></div>
