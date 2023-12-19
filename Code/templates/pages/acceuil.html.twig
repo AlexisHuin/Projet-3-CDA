@@ -14,20 +14,44 @@
 
 {% block body %}
 	<div id="map"></div>
+	<div class="content position-absolute top-0 end-0 mt-4 me-4 ">
+		<input id="searchBar" class="form-control me-sm-2 fs-1 text" data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="search" placeholder="Rechercher">
+			</div>
 	<nav id="nav">
-	<img src="{{ asset('img/user.svg') }}" alt="Profil">
-	<img src="{{ asset('img/map.svg') }}" alt="Itinéraire">
-	<img src="{{ asset('img/group.svg') }}" alt="Géolocalisation">
-	<img src="{{ asset('img/gift.svg') }}" alt="Cadeaux">
-	<img src="{{ asset('img/balance.svg') }}" alt="Mentions générales">
-
+		<img src="{{ asset('img/user.svg') }}" alt="Profil">
+		<img src="{{ asset('img/map.svg') }}" alt="Itinéraire">
+		<img src="{{ asset('img/group.svg') }}" alt="Géolocalisation">
+		<img src="{{ asset('img/gift.svg') }}" alt="Cadeaux">
+		<img src="{{ asset('img/balance.svg') }}" alt="Mentions générales">
 	</nav>
-	<div class="content position-absolute top-0 end-0">
-		<form class="d-flex mt-4 me-2">
-			<input class="form-control me-sm-2 fs-2 text" type="search" placeholder="Rechercher">
-			<button class="btn btn-secondary my-2 my-sm-0 fs-2 text " type="submit">Rechercher</button>
-		</form>
+
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div id="modaleTransition"class="modal-dialog">
+			<div id="modalWidth" class="modal-content">
+				<div id="modalHeader" class="modal-header">
+					<h1 class="modal-title  fs-1 text fw-bold" id="staticBackdropLabel">Catégories</h1>
+					<input class="fs-1 text me-1" type="text" placeholder="Quels lieux ?">
+					</div>
+				<div id="modalBody" class="modal-body">
+					<div class="block"></div>
+					<div class="block"></div>
+					<div class="block"></div>
+					<div class="block"></div>
+					<div class="block"></div>
+					<div class="block"></div>
+					<div class="block"></div>
+					<div class="block"></div>
+					<div class="block"></div>
+					<div class="block"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary fs-1 text" data-bs-dismiss="modal">Retour</button>
+					<button type="button" class="btn btn-primary fs-1 text">Valider</button>
+				</div>
+			</div>
+		</div>
 	</div>
+	
 	<div class="bottom_button burger">
 		<div class="contain_burger_line" id="line1"></div>
 		<div class="contain_burger_line" id="line2"></div>
