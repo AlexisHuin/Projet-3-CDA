@@ -54,6 +54,13 @@ body {
   z-index: 0;
   height: 100%;
 }
+#logo {
+  z-index: 1;
+    position: fixed;
+    top: 2em;
+    margin-left: 1em;
+}
+
 #nav {
   display: none;
   position: fixed;
