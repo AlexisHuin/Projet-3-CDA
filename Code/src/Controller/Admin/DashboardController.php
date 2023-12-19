@@ -8,10 +8,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/alexis')]
+#[Route('/admin')]
 class DashboardController extends AbstractDashboardController
 {
-    #[Route('/', name: 'admin')]
+    #[Route('/', name: 'admin.index')]
     public function index(): Response
     {
         return parent::index();
