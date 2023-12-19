@@ -36,7 +36,19 @@ async function initMap() {
             }
         ]
     });
-    await fetch("/api/");
+    await fetch("/api/search").then(res => res.json().then(data => {
+        console.log(data);
+        data.results.forEach(d => {
+            let mark = new google.maps.Marker({
+                map,
+                position: { lat: d.lat, lng: d.long },
+                title: d.name,
+            });
+            mark.addListener("click", async () => {
+                await fetch("/api/details?l=" + d.id).then(res => res.json().then(data => { console.log(data); }));
+            });
+        });
+    })).catch(err => console.log(err));
 }
 
 
