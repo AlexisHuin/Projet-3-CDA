@@ -58,29 +58,11 @@ class UserType extends AbstractType
                     new Assert\Length(['min' => 2, 'max' => 50])
                 ]
             ])
-            ->add('avatar_url', FormType\FileType::class, [
+            ->add('submit', FormType\SubmitType::class, [
                 'attr' => [
-                    'class' => 'form-control',
-                ],
-                'label' => 'Avatar (facultatif)',
-                'label_attr' => [
-                    'class' => 'form-label  mt-4'
-                ],
-                'required' => false,
-                'constraints' => [
-                    new Assert\File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'image/png',
-                            'image/jpeg',
-                            'image/jpg',
-                            'image/gif'
-                        ],
-                        'mimeTypesMessage' => 'Veuillez choisir un fichier image valide (png, jpg, jpeg, gif)',
-                    ])
+                    'class' => 'btn btn-primary mt-4'
                 ]
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
