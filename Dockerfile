@@ -20,7 +20,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && rm composer-setup.php
 
 # Install and configure PHP extensions
-RUN docker-php-ext-install opcache soap calendar sockets mysqli pdo pdo_mysql \
+RUN docker-php-ext-install opcache soap calendar sockets mysqli pdo pdo_mysql intl \
     && docker-php-ext-configure calendar \
     && pecl install apcu
 
