@@ -1,6 +1,12 @@
-body {
-  height: 100dvh;
+* {
+  margin: 0;
+  padding: 0;
 }
+
+body {
+  height: 100vh;
+}
+
 .nav_gift {
   margin: 1em 0 1em 1em;
   display: flex;
@@ -40,12 +46,15 @@ main {
 }
 .condition {
   background-color: brown;
-  width: 100%;
+  width: 90%;
   height: 20vh;
+  margin: auto;
+  
 }
 
 .buttonMod {
   width: 40%;
+  
 }
 
 #staticBackdrop {
@@ -109,3 +118,25 @@ main {
   max-width: 100%;
   height: auto;
 }
+
+footer {
+  display: flex;
+  justify-content: end;
+}
+.gift_footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 14vh;
+  height: 5vh;
+  background-color: #8e8c84;
+  border-radius: 0.5em;
+  margin: 2vh 2vh 0 0;
+  font-size: 2em;
+  }
+
+  .gift_footer a {
+    text-decoration: none;
+    color: white;
+    text-transform: bold;
+  }
