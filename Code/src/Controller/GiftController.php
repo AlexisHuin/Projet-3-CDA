@@ -20,7 +20,7 @@ class GiftController extends AbstractController
             10
         );
 
-        return $this->render('gift/gift.html.twig', [
+        return $this->render('pages/gift/gift.html.twig', [
             'cadeaux' => $cadeaux
         ]);
     }
