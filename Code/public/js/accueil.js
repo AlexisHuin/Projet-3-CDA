@@ -1,8 +1,12 @@
+const escapeHtml = (unsafe) => {
+    return unsafe.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+};
+
 let map;
 
 async function initMap() {
-    const zoom = 8.25;
-    var center = new google.maps.LatLng(47.363, 0.6);
+    const zoom = 8.35;
+    var center = new google.maps.LatLng(47.5751, 0.31366);
     map = new google.maps.Map(document.getElementById("map"), {
         zoom,
         center,
@@ -32,15 +36,27 @@ async function initMap() {
                 title: d.name,
             });
             mark.addListener("click", async () => {
-                console.log(d);
-                await fetch("/api/details?l=" + d.id).then(async res => {
-                    console.log(await res.text());
-                    // await res.json().then(data => {
-                    //     console.log(data);
-                    // });
-                }).catch(err =>
-                    console.log(err)
-                );
+                try {
+                    let response = await fetch("/api/details?l=" + d.id);
+
+                    if (response.ok) {
+                        let data = await response.json();
+                        document.getElementById('modalcontent').innerHTML = escapeHtml(JSON.stringify(data));
+                        document.getElementById("myModal").style.display = "block";
+                    } else {
+                        console.error("La requête a échoué avec le statut :", response.status);
+                    }
+                } catch (error) {
+                    console.error("Erreur lors de la récupération des données :", error);
+                }
+                document.querySelector(".close").addEventListener("click", () => {
+                    document.getElementById("myModal").style.display = "none";
+                });
+                window.addEventListener("click", (event) => {
+                    if (event.target == document.getElementById("myModal")) {
+                        document.getElementById("myModal").style.display = "none";
+                    }
+                });
             });
         });
     })).catch(err => console.log(err));
