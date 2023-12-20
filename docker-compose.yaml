@@ -18,6 +18,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: cda_projet2_php
+    command: bash -c "composer i && php-fpm"
     volumes:
       - ./Code/:/var/www/html/
     tmpfs: /tmp
