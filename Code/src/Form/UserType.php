@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type as FormType;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class UserEditType extends AbstractType
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

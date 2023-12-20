@@ -62,14 +62,13 @@ class SecurityController extends AbstractController
             $user = $form->getData();
             $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
 
+            $manager->persist($user);
+            $manager->flush();
+
             $this->addFlash(
                 'success',
                 'Votre compte a bien été créé.'
             );
-
-            $manager->persist($user);
-            $manager->flush();
-
             return $this->redirectToRoute('security.login');
         }
 
