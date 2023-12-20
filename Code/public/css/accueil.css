@@ -1,167 +1,159 @@
 body {
-  height: 100dvh;
-}
-.content {
-  width: 30%;
-  height: 5vh;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 1;
-  }
-
-  #staticBackdrop {
-    top: 115em;
-      
-  }
-#modalHeader {
-  display: flex;
+    height: 100dvh;
 }
 
 #staticBackdrop {
-  top: 115em;
-}
-#modalHeader {
-  display: flex;
+    top: 115em;
+
 }
 
-#modalHeader > h1,
-#modalHeader > input {
-  flex: 1;
+#modalHeader {
+    display: flex;
 }
+
+#staticBackdrop {
+    top: 115em;
+}
+
+#modalHeader {
+    display: flex;
+}
+
+#modalHeader>h1,
+#modalHeader>input {
+    flex: 1;
+}
+
 #modalWidth {
-  width: 100vw;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  height: 65vh;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 65vh;
 }
 
 #modaleTransition {
-  transition: none;
+    transition: none;
 }
+
 #modalBody {
-  display: flex;
-  flex-wrap: wrap;
-  overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
 }
 
 .block {
-  background-color: pink;
-  width: calc(50% - 1em);
-  margin: 0.5em;
-  box-sizing: border-box;
-  height: 10em;
+    background-color: pink;
+    width: calc(50% - 1em);
+    margin: 0.5em;
+    box-sizing: border-box;
+    height: 10em;
 }
-.modal-footer > button {
-  flex: 1;
-  padding: 0.7em;
+
+.modal-footer>button {
+    flex: 1;
+    padding: 0.7em;
 }
+
 #map {
-  z-index: 0;
-  height: 100%;
+    z-index: 0;
+    height: 100%;
 }
+
 #logo {
-  z-index: 1;
-  position: fixed;
-  top: 2em;
-  margin-left: 1em;
+    z-index: 1;
+    position: fixed;
+    top: 2em;
+    margin-left: 1em;
 }
 
 #logo>img {
-  width: 20vw;
-  height: auto;
-  border-radius: 2em;
+    width: 20vw;
+    max-width: 180px;
+    height: auto;
+    border-radius: 2em;
 }
 
 #nav {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: calc(4.5vw + 5em);
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.392);
-  height: 55vh;
-  width: 12vw;
-  border-radius: 2em;
-  margin: 0 0 0 1em;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: calc(5em);
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.45);
+    height: 55vh;
+    width: 10vw;
+    border-radius: 2em;
+    margin: 0 0 0 1em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-#nav > a{
-  margin: auto;
-  width: 5em;
-  }
-  #nav a img {
-width: 100%;
-  }
+#nav>a {
+    margin: auto;
+    width: 60px;
+}
+
+#nav a img {
+    width: 100%;
+}
 
 .bottom_button {
-  z-index: 1;
-  width: 7em;
-  height: 7em;
-  border-radius: 45px;
-  background-color: rgba(0, 0, 0, 0.392);
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-  position: fixed;
-  border: 0.2em solid black;
-  display: flex;
-  flex-wrap: wrap;
+    z-index: 1;
+    width: 60px;
+    height: 60px;
+    border-radius: 45px;
+    background-color: rgba(0, 0, 0, 0.392);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    position: fixed;
+    border: 0.2em solid black;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .burger {
-  bottom: 5em;
-  left: 5em;
-  align-items: center;
+    bottom: 5em;
+    left: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.contain_burger_line {
-  margin: 0 auto;
-  height: 0.6rem;
-  width: 70%;
-  background-color: black;
-  position: absolute;
+.burger-line {
+    border-radius: 4px;
+    height: 6px;
+    width: 70%;
+    background-color: #000;
+    transition: all .2s ease-in-out;
 }
 
-#line1 {
-  top: 1rem;
-  left: 1rem;
+.burger.cross>#burger-line3 {
+    display: none;
 }
 
-#line2 {
-  top: 5rem;
-  left: 1rem;
+.burger.cross>#burger-line1 {
+    transform: rotate(45deg) translate(8px, 10px);
 }
 
-#line3 {
-  bottom: 3rem;
-  left: 1rem;
+.burger.cross>#burger-line2 {
+    transform: rotate(-45deg) translate(8px, -10px);
 }
 
 .geoloc {
-  bottom: 5em;
-  right: 5em;
+    bottom: 5em;
+    right: 5em;
 }
 
 .geoloc-loc {
-  display: block;
-  width: 110%;
-  margin: auto;
+    display: block;
+    width: 100%;
+    margin: auto;
 }
 
 .geoloc-loc_blue {
-  display: none;
-  width: 110%;
-  margin: auto;
+    display: none;
+    width: 100%;
+    margin: auto;
 }
-
-.geoloc-loc_blue {
-  display: none;
-  width: 110%;
-  margin: auto;
-}
-
-

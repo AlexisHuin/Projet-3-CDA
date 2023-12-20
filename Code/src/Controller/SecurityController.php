@@ -52,7 +52,8 @@ class SecurityController extends AbstractController
     {
         $user = new User();
         $user->setRoles(['ROLE_USER'])
-            ->setAvatarUrl('/images/default_avatar.webp');
+            ->setAvatarUrl('default.webp')
+            ->setGiftPoints(0);
 
         $form = $this->createForm(RegistrationType::class, $user);
 

@@ -11,7 +11,7 @@ class GiftController extends AbstractController
     #[Route('/gift', name: 'app_gift')]
     public function index(): Response
     {
-        return $this->render('gift/gift.html.twig', [
+        return $this->render('pages/gift/gift.html.twig', [
             'controller_name' => 'GiftController',
         ]);
     }

@@ -40,6 +40,7 @@ class ApiController extends AbstractController
 
             return new JsonResponse(['results' => $results]);
         } catch (\Exception $e) {
+            error_log(print_r($e, TRUE));
             return new JsonResponse(['error' => 'An error occurred: ' . $e->getMessage()], 500);
         }
     }
@@ -65,6 +66,7 @@ class ApiController extends AbstractController
 
             return new JsonResponse(['data' => $data]);
         } catch (\Exception $e) {
+            error_log(print_r($e, TRUE));
             return new JsonResponse(['error' => 'An error occurred: ' . $e->getMessage()], 500);
         }
     }
