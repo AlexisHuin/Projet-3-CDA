@@ -12,10 +12,12 @@
 {% endblock %}
 
 {% block body %}
+	<div class="loadingscreen">
+		<img src="{{asset('img/logoVDL.png')}}" alt="Logo">
+	</div>
 	<div id="map"></div>
 	<div class="position-fixed top-0 end-0 mt-4 me-4">
 		<button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#searchModalBackdrop">Rechercher</button>
-
 	</div>
 	<div id="logo"></div>
 	<nav id="nav">
@@ -63,10 +65,10 @@
 		<img class="geoloc-loc_blue" src="{{ asset('img/geo-blue.png') }}" alt="Icone géolocalisation">
 	</div>
 	<div id="myModal" class="modal">
-	<div class="modal-content">
-	<span class="close">&times;</span>
-	<div id="modalcontent"></div>
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<div id="modalcontent"></div>
+		</div>
 	</div>
-  </div>
 
 {% endblock %}

@@ -2,16 +2,20 @@ body {
     height: 100dvh;
 }
 
-#staticBackdrop {
-    top: 115em;
-
-}
-
-#modalHeader {
+.loadingscreen {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0D0D0D;
 }
 
-#staticBackdrop {
+#searchModalBackdrop {
     top: 115em;
 }
 
@@ -27,7 +31,7 @@ body {
 #modalWidth {
     width: 100vw;
     position: fixed;
-    left: 0;
+    left: 50%;
     bottom: 0;
     height: 65vh;
 }
@@ -44,7 +48,7 @@ body {
 
 .block {
     background-color: pink;
-    width: calc(50% - 1em);
+    width: 25vw;
     margin: 0.5em;
     box-sizing: border-box;
     height: 10em;
@@ -154,16 +158,10 @@ body {
 
 .geoloc-loc_blue {
     display: none;
-    width: 110%;
+    width: 100%;
     margin: auto;
 }
 
-
-.geoloc-loc_blue {
-  display: none;
-  width: 110%;
-  margin: auto;
-}
 
 .modal {
     display: none;
@@ -176,18 +174,14 @@ body {
 }
 
 .modal-content {
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: max-content;
-  transform: translate(-50%, -50%);
-  color :white;
-  padding: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  text-align: center;
+    top: 50%;
+    left: 50%;
+    height: max-content;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: 70% !important;
+    align-items: center;
+    text-align: center;
 
 }
 

@@ -21,7 +21,7 @@ class ApiController extends AbstractController
     #[Route('/search', name: 'api.search', methods: ['GET'])]
     public function ApiSearch(Request $request): JsonResponse
     {
-        $apiUrl = 'https://opentripmap-places-v1.p.rapidapi.com/en/places/bbox?lon_max=2.325511&lat_min=46.784633&lon_min=-1.75033&lat_max=48.199482&limit=1000&kinds=cultural,historic,tourist_facilities,foods';
+        $apiUrl = 'https://opentripmap-places-v1.p.rapidapi.com/en/places/bbox?lon_max=2.325511&lat_min=46.784633&lon_min=-1.75033&lat_max=48.199482&limit=500&kinds=cultural,historic,tourist_facilities,foods';
 
         try {
             $response = $this->client->request('GET', $apiUrl, [

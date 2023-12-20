@@ -2,7 +2,7 @@ const escapeHtml = (unsafe) => {
     return unsafe.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
 };
 
-let map;
+let map, markers = [];
 
 async function initMap() {
     const zoom = 8.35;
@@ -35,27 +35,23 @@ async function initMap() {
                 position: { lat: d.lat, lng: d.long },
                 title: d.name,
             });
+            markers.push(mark);
             mark.addListener("click", async () => {
                 try {
                     let response = await fetch("/api/details?l=" + d.id);
 
                     if (response.ok) {
-                        let data = await response.json();
+                        let data = (await response.json()).data;
 
-                        console.log(data)
-                        let name = data.data.name;
-                        let preview = data.data.preview.source
-                        let address = data.data.address.county;
-                        let wikipedia = data.data.wikipedia;
-                        let wikipedia_extracts = data.data.wikipedia_extracts.text;
+                        let name = data.name;
+                        let preview = data.preview.source;
+                        let address = data.address.county;
+                        let wikipedia = data.wikipedia;
+                        let wikipedia_extracts = data.wikipedia_extracts.text;
 
-                        let contextText = ` <img src="${preview}"> <br> <alt="Preview Image - ${preview}"> <br> Name : ${name} <br> Address : ${address} <br> wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a> <br> Description  : ${wikipedia_extracts}`
-                        
-                        
+                        let contextText = ` <img src="${preview}"> <br> <alt="Preview Image - ${preview}"> <br> Name : ${name} <br> Address : ${address} <br> wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a> <br> Description  : ${wikipedia_extracts}`;
 
-                        
-                
-                        document.getElementById('modalcontent').innerHTML = contextText
+                        document.getElementById('modalcontent').innerHTML = contextText;
                         document.getElementById("myModal").style.display = "block";
                     } else {
                         console.error("La requête a échoué avec le statut :", response.status);
@@ -73,7 +69,9 @@ async function initMap() {
                 });
             });
         });
-    })).catch(err => console.log(err));
+        document.getElementsByClassName("loadingscreen")[0].remove();
+    }
+    )).catch(err => console.log(err));
 }
 
 let geoloc = document.querySelector(".geoloc");
