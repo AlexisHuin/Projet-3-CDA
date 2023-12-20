@@ -50,10 +50,20 @@ async function initMap() {
                     
                     if (response.ok) {
                         let data = await response.json();
+                        console.log(data)
+                        let name = data.data.name;
+                        let preview = data.data.preview.source
+                        let address = data.data.address.county;
+                        let wikipedia = data.data.wikipedia;
+                        let wikipedia_extracts = data.data.wikipedia_extracts.text;
+
+                        let contextText = ` <img src="${preview}"> <br> <alt="Preview Image - ${preview}"> <br> Name : ${name} <br> Address : ${address} <br> wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a> <br> Description  : ${wikipedia_extracts}`
+                        
+                        
 
                         
                 
-                        document.getElementById('modalcontent').innerHTML =JSON.stringify(data)
+                        document.getElementById('modalcontent').innerHTML = contextText
                         document.getElementById("myModal").style.display = "block";
                     } else {
                         console.error("La requête a échoué avec le statut :", response.status);
@@ -171,3 +181,5 @@ async function initMap() {
         }
     });
 })();
+
+
