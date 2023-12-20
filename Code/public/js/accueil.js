@@ -1,6 +1,12 @@
 const escapeHtml = (unsafe) => {
-    return unsafe.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+  return unsafe
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 };
+
 
 let map, markers = [];
 let myModal = document.getElementById("myModal");
@@ -51,16 +57,18 @@ async function initMap() {
                     document.getElementById("modalcontent").innerHTML = "Chargement...";
                     let response = await fetch("/api/details?l=" + d.id);
 
-                    if (response.ok) {
-                        let data = (await response.json()).data;
 
-                        let name = data.name;
-                        let preview = data.preview.source;
-                        let address = data.address.county;
-                        let wikipedia = data.wikipedia;
-                        let wikipedia_extracts = data.wikipedia_extracts.text;
+              if (response.ok) {
+                let data = (await response.json()).data;
 
-                        let contextText = ` <img src="${preview}"> <br> <alt="Preview Image - ${preview}"> <br> Name : ${name} <br> Address : ${address} <br> wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a> <br> Description  : ${wikipedia_extracts}`;
+                let name = data.name;
+                let preview = data.preview.source;
+                let address = data.address.county;
+                let wikipedia = data.wikipedia;
+                let wikipedia_extracts = data.wikipedia_extracts.text;
+
+                let contextText = ` <img src="${preview}"> <br> <alt="Preview Image - ${preview}"> <br> Name : ${name} <br> Address : ${address} <br> wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a> <br> Description  : ${wikipedia_extracts}`;
+
 
                         document.getElementById('modalcontent').innerHTML = contextText;
                     } else {
@@ -69,11 +77,19 @@ async function initMap() {
                 } catch (error) {
                     console.error("Erreur lors de la récupération des données :", error);
                 }
+
             });
+            window.addEventListener("click", (event) => {
+              if (event.target == document.getElementById("myModal")) {
+                document.getElementById("myModal").style.display = "none";
+              }
+            });
+          });
         });
         document.getElementsByClassName("loadingscreen")[0].remove();
-    }
-    )).catch(err => console.log(err));
+      })
+    )
+    .catch((err) => console.log(err));
 }
 
 document.querySelector(".close").addEventListener("click", () => {
@@ -86,50 +102,52 @@ window.addEventListener("click", (event) => {
 });
 
 geoloc.addEventListener("click", () => {
-    if (geoIcon.style.display !== "none") {
-        navigator.geolocation.getCurrentPosition(
-            function (pos) {
-                var crd = pos.coords;
+  if (geoIcon.style.display !== "none") {
+    navigator.geolocation.getCurrentPosition(
+      function (pos) {
+        var crd = pos.coords;
 
-                new google.maps.Marker({
-                    map,
-                    position: { lat: crd.latitude, lng: crd.longitude },
-                    title: "bonjour",
-                    icon: "/img/geo-blue.png"
-                });
-            },
-            function (err) {
-                console.warn(err);
-            }, {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0,
+        new google.maps.Marker({
+          map,
+          position: { lat: crd.latitude, lng: crd.longitude },
+          title: "bonjour",
+          icon: "/img/geo-blue.png",
         });
+      },
+      function (err) {
+        console.warn(err);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      }
+    );
 
-        geoIcon.style.display = "none";
-        geoIconBlue.style.display = "block";
-    } else {
-        geoIconBlue.style.display = "none";
-        geoIcon.style.display = "block";
-    }
+    geoIcon.style.display = "none";
+    geoIconBlue.style.display = "block";
+  } else {
+    geoIconBlue.style.display = "none";
+    geoIcon.style.display = "block";
+  }
 });
 
 burger.addEventListener("click", () => {
-    nav.classList.toggle("nav-visible");
-    burger.classList.toggle("cross");
-    if (nav.style.display === "flex") {
-        logoPlace.innerHTML = "";
-        nav.style.display = "none";
-    } else {
-        nav.style.display = "flex";
-        let logo = document.createElement("img");
-        logo.src = "img/logoVDL.png";
-        logo.alt = "Logo Val De Loire";
+  nav.classList.toggle("nav-visible");
+  burger.classList.toggle("cross");
+  if (nav.style.display === "flex") {
+    logoPlace.innerHTML = "";
+    nav.style.display = "none";
+  } else {
+    nav.style.display = "flex";
+    let logo = document.createElement("img");
+    logo.src = "img/logoVDL.png";
+    logo.alt = "Logo Val De Loire";
 
-        logoPlace.appendChild(logo);
-
-    }
+    logoPlace.appendChild(logo);
+  }
 });
+
 
 mentionslegales.addEventListener("click", () => {
     myModal.style.display = "block";
@@ -160,3 +178,4 @@ mentionslegales.addEventListener("click", () => {
 
     <p>Ces mentions légales ont été mises à jour le [Date de la dernière mise à jour].</p>`;
 }); 
+

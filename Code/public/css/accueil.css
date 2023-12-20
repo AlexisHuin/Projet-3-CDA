@@ -2,6 +2,15 @@ body {
   height: 100dvh;
 }
 
+
+#modalHeader {
+  display: flex;
+}
+
+#staticBackdrop {
+  top: 115em;
+}
+
 .loadingscreen {
   position: sticky;
   z-index: 100;
@@ -12,7 +21,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #0D0D0D;
+
+  background-color: #0d0d0d;
 }
 
 #searchModalBackdrop {
@@ -28,8 +38,8 @@ body {
   flex: 1;
 }
 
-#searchModalBackdrop #modalWidth,
-.modal-content {
+
+#modalWidth {
   width: 100vw;
   position: fixed;
   left: 50%;
@@ -87,12 +97,11 @@ body {
   display: none;
   position: fixed;
   z-index: 1;
-  left: calc(5em);
+  left: calc(6em);
   top: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(146, 146, 146, 0.588);
   height: 55vh;
-  width: 10vw;
   border-radius: 2em;
   margin: 0 0 0 1em;
   flex-direction: column;
@@ -141,6 +150,7 @@ body {
   display: none;
 }
 
+
 .burger.cross>#burger-line1 {
   transform: rotate(45deg) translate(20px, 20px);
 }
@@ -148,6 +158,7 @@ body {
 .burger.cross>#burger-line2 {
   transform: rotate(-45deg) translate(20px, -20px);
 }
+
 
 .geoloc {
   bottom: 5em;
@@ -177,8 +188,9 @@ body {
 }
 
 .modal-content {
+
   max-width: 70vw;
-  position: absolute;
+ position: absolute;
   top: 50%;
   left: 50%;
   height: max-content;
@@ -219,19 +231,38 @@ body {
   .burger.cross>#burger-line2 {
     transform: rotate(-45deg) translate(1.5rem, -1.5rem);
   }
+  #nav {
+    width: 18vw;
+  }
+  #logo {
+   top: 11em;
+   
+    
+}
 }
 
 @media (min-width: 1320px) {
   .bottom_button {
     width: 7vh;
     height: 7vh;
+
+  }
+  .burger.cross > #burger-line1 {
+    transform: rotate(45deg) translate(0.6rem, 0.6rem);
   }
 
-  .burger.cross>#burger-line1 {
-    transform: rotate(45deg) translate(1rem, 1rem);
+  .burger.cross > #burger-line2 {
+    transform: rotate(-45deg) translate(0.7rem, -0.9rem);
   }
-
-  .burger.cross>#burger-line2 {
-    transform: rotate(-45deg) translate(1rem, -1rem);
+  #nav {
+    width: 9vw;
+    left: calc(6em);
   }
+  #logo {
+    top: 2em;
+    left: calc(0.5em);
+     
+ }
 }
+
+

@@ -48,15 +48,16 @@ main {
 }
 
 .condition {
-    background-color: brown;
-    width: 90%;
-    height: 20vh;
-    margin: auto;
 
+  background-color: #d6dfe7;
+  width: 90%;
+  height: 20vh;
+  margin: auto;
+  border-radius: 1em;
 }
 
 .buttonMod {
-    width: 40%;
+  width: 40%;
 
 }
 
@@ -132,25 +133,27 @@ footer {
 }
 
 .gift_footer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 14vh;
-    height: 5vh;
-    background-color: #8e8c84;
-    border-radius: 0.5em;
-    margin: 2vh 2vh 0 0;
-    font-size: 2em;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 14vh;
+  height: 5vh;
+  background-color: #8e8c84;
+  border-radius: 0.5em;
+  margin: 2vh 2vh 0 0;
+  font-size: 2em;
 }
 
 .gift_footer a {
-    text-decoration: none;
-    color: white;
-    text-transform: bold;
+  text-decoration: none;
+  color: white;
+  text-transform: bold;
 }
 
 .navigation span {
-    font-size: 3em;
-    margin: 0.2em;
-    color: grey;
+  font-size: 3em;
+  margin: 0.2em;
+  color: grey;
 }
+
