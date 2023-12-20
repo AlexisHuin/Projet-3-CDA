@@ -1,50 +1,54 @@
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  height: 100vh;
+    height: 100vh;
 }
 
 .nav_gift {
-  margin: 1em 0 1em 1em;
-  display: flex;
+    margin: 1em 0 1em 1em;
+    display: flex;
 }
+
 #logo {
-  width: 20vw;
-  height: auto;
-  border-radius: 2em;
+    width: 20vw;
+    height: auto;
+    border-radius: 2em;
 }
 
 .nav_gift-logo {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .logoReturn {
-  margin-top: 1em;
-  display: flex;
-  justify-content: center;
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
 }
 
 .researchBar {
-  position: fixed;
-  top: 2em;
-  right: 2em;
-  display: flex;
-  align-items: center;
+    position: fixed;
+    top: 2em;
+    right: 2em;
+    display: flex;
+    align-items: center;
 }
 
 .researchBar button {
-  padding: 0.4em;
+    padding: 0.4em;
 }
+
 main {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
+
 .condition {
+
   background-color: #d6dfe7;
   width: 90%;
   height: 20vh;
@@ -54,75 +58,82 @@ main {
 
 .buttonMod {
   width: 40%;
+
 }
 
 #staticBackdrop {
-  top: 115em;
-}
-#modalHeader {
-  display: flex;
+    top: 115em;
 }
 
-#modalHeader > h1,
-#modalHeader > input {
-  flex: 1;
+#modalHeader {
+    display: flex;
 }
+
+#modalHeader>h1,
+#modalHeader>input {
+    flex: 1;
+}
+
 #modalWidth {
-  width: 100vw;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  height: 65vh;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 65vh;
 }
 
 #modaleTransition {
-  transition: none;
+    transition: none;
 }
+
 #modalBody {
-  display: flex;
-  flex-wrap: wrap;
-  overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
 }
 
 .block {
-  background-color: pink;
-  width: calc(50% - 1em);
-  margin: 0.5em;
-  box-sizing: border-box;
-  height: 10em;
+    background-color: pink;
+    width: calc(50% - 1em);
+    margin: 0.5em;
+    box-sizing: border-box;
+    height: 10em;
 }
-.modal-footer > button {
-  flex: 1;
-  padding: 0.7em;
+
+.modal-footer>button {
+    flex: 1;
+    padding: 0.7em;
 }
 
 .block_gift {
-  display: flex;
-  width: 90%;
-  height: 10vh;
-  background-color: yellow;
-  overflow: hidden;
+    display: flex;
+    width: 90%;
+    height: 10vh;
+    background-color: yellow;
+    overflow: hidden;
 }
 
 .block_gift-l {
-  flex: 2;
+    flex: 2;
 }
 
 .block_gift-r {
-  flex: 1;
-  box-sizing: border-box;
+    flex: 1;
+    box-sizing: border-box;
 }
 
 .block_gift-r img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 footer {
-  display: flex;
-  justify-content: end;
+    display: flex;
+    justify-content: end;
 }
+
 .gift_footer {
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -145,3 +156,4 @@ footer {
   margin: 0.2em;
   color: grey;
 }
+

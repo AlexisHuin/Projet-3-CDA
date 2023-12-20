@@ -2,6 +2,7 @@ body {
   height: 100dvh;
 }
 
+
 #modalHeader {
   display: flex;
 }
@@ -20,6 +21,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
   background-color: #0d0d0d;
 }
 
@@ -27,28 +29,33 @@ body {
   top: 115em;
 }
 
-#modalHeader {
+#searchModalBackdrop #modalHeader {
   display: flex;
 }
 
-#modalHeader > h1,
-#modalHeader > input {
+#searchModalBackdrop #modalHeader>h1,
+#searchModalBackdrop #modalHeader>input {
   flex: 1;
 }
+
 
 #modalWidth {
   width: 100vw;
   position: fixed;
-  left: 0;
+  left: 50%;
   bottom: 0;
-  height: 65vh;
+  max-height: 65vh;
 }
 
-#modaleTransition {
+#modalcontent {
+  overflow: auto;
+}
+
+#searchModalBackdrop #modaleTransition {
   transition: none;
 }
 
-#modalBody {
+#searchModalBackdrop #modalBody {
   display: flex;
   flex-wrap: wrap;
   overflow: auto;
@@ -56,13 +63,13 @@ body {
 
 .block {
   background-color: pink;
-  width: calc(50% - 1em);
+  width: 250px;
   margin: 0.5em;
   box-sizing: border-box;
   height: 10em;
 }
 
-.modal-footer > button {
+.modal-footer>button {
   flex: 1;
   padding: 0.7em;
 }
@@ -79,7 +86,7 @@ body {
   margin-left: 1em;
 }
 
-#logo > img {
+#logo>img {
   width: 20vw;
   max-width: 180px;
   height: auto;
@@ -102,7 +109,7 @@ body {
   justify-content: center;
 }
 
-#nav > a {
+#nav>a {
   margin: auto;
   width: 60px;
 }
@@ -139,9 +146,19 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.burger.cross > #burger-line3 {
+.burger.cross>#burger-line3 {
   display: none;
 }
+
+
+.burger.cross>#burger-line1 {
+  transform: rotate(45deg) translate(20px, 20px);
+}
+
+.burger.cross>#burger-line2 {
+  transform: rotate(-45deg) translate(20px, -20px);
+}
+
 
 .geoloc {
   bottom: 5em;
@@ -171,7 +188,9 @@ body {
 }
 
 .modal-content {
-  position: absolute;
+
+  max-width: 70vw;
+ position: absolute;
   top: 50%;
   left: 50%;
   height: max-content;
@@ -204,11 +223,12 @@ body {
     width: 6vh;
     height: 6vh;
   }
-  .burger.cross > #burger-line1 {
+
+  .burger.cross>#burger-line1 {
     transform: rotate(45deg) translate(1.5rem, 1.5rem);
   }
 
-  .burger.cross > #burger-line2 {
+  .burger.cross>#burger-line2 {
     transform: rotate(-45deg) translate(1.5rem, -1.5rem);
   }
   #nav {
@@ -225,6 +245,7 @@ body {
   .bottom_button {
     width: 7vh;
     height: 7vh;
+
   }
   .burger.cross > #burger-line1 {
     transform: rotate(45deg) translate(0.6rem, 0.6rem);
@@ -243,3 +264,5 @@ body {
      
  }
 }
+
+
