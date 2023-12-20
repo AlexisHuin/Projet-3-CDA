@@ -81,7 +81,7 @@ body {
     left: calc(5em);
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.45);
+    background-color: rgba(146, 146, 146, 0.588);
     height: 55vh;
     width: 10vw;
     border-radius: 2em;

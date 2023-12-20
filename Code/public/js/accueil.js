@@ -33,11 +33,11 @@ async function initMap() {
             });
             mark.addListener("click", async () => {
                 console.log(d);
-                await fetch("/api/details?l=" + d.id).then(res => {
-                    console.log(res);
-                    res.json().then(data => {
-                        console.log(data);
-                    });
+                await fetch("/api/details?l=" + d.id).then(async res => {
+                    console.log(await res.text());
+                    // await res.json().then(data => {
+                    //     console.log(data);
+                    // });
                 }).catch(err =>
                     console.log(err)
                 );
