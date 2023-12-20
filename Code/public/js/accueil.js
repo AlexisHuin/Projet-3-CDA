@@ -45,7 +45,30 @@ async function initMap() {
                 title: d.name,
             });
             mark.addListener("click", async () => {
-                await fetch("/api/details?l=" + d.id).then(res => res.json().then(data => { console.log(data); }));
+                try {
+                    let response = await fetch("/api/details?l=" + d.id);
+                    
+                    if (response.ok) {
+                        let data = await response.json();
+
+                        
+                
+                        document.getElementById('modalcontent').innerHTML =JSON.stringify(data)
+                        document.getElementById("myModal").style.display = "block";
+                    } else {
+                        console.error("La requête a échoué avec le statut :", response.status);
+                    }
+                } catch (error) {
+                    console.error("Erreur lors de la récupération des données :", error);
+                }
+                document.querySelector(".close").addEventListener("click", () => {
+                    document.getElementById("myModal").style.display = "none";
+                });
+                window.addEventListener("click", (event) => {
+                    if (event.target == document.getElementById("myModal")) {
+                        document.getElementById("myModal").style.display = "none";
+                    }
+                });
             });
         });
     })).catch(err => console.log(err));
