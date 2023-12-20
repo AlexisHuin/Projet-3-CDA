@@ -3,6 +3,15 @@ const escapeHtml = (unsafe) => {
 };
 
 let map, markers = [];
+let myModal = document.getElementById("myModal");
+let geoloc = document.querySelector(".geoloc");
+let geoIcon = document.querySelector(".geoloc-loc");
+let geoIconBlue = document.querySelector(".geoloc-loc_blue");
+let burger = document.querySelector(".burger");
+let nav = document.querySelector("#nav");
+let logoPlace = document.querySelector("#logo");
+let mentionslegales = document.querySelector("#mentionslegales_btn");
+
 
 async function initMap() {
     const zoom = 8.35;
@@ -38,7 +47,7 @@ async function initMap() {
             markers.push(mark);
             mark.addListener("click", async () => {
                 try {
-                    document.getElementById("myModal").style.display = "block";
+                    myModal.style.display = "block";
                     document.getElementById("modalcontent").innerHTML = "Chargement...";
                     let response = await fetch("/api/details?l=" + d.id);
 
@@ -60,14 +69,6 @@ async function initMap() {
                 } catch (error) {
                     console.error("Erreur lors de la récupération des données :", error);
                 }
-                document.querySelector(".close").addEventListener("click", () => {
-                    document.getElementById("myModal").style.display = "none";
-                });
-                window.addEventListener("click", (event) => {
-                    if (event.target == document.getElementById("myModal")) {
-                        document.getElementById("myModal").style.display = "none";
-                    }
-                });
             });
         });
         document.getElementsByClassName("loadingscreen")[0].remove();
@@ -75,12 +76,14 @@ async function initMap() {
     )).catch(err => console.log(err));
 }
 
-let geoloc = document.querySelector(".geoloc");
-let geoIcon = document.querySelector(".geoloc-loc");
-let geoIconBlue = document.querySelector(".geoloc-loc_blue");
-let burger = document.querySelector(".burger");
-let nav = document.querySelector("#nav");
-let logoPlace = document.querySelector("#logo");
+document.querySelector(".close").addEventListener("click", () => {
+    myModal.style.display = "none";
+});
+window.addEventListener("click", (event) => {
+    if (event.target == myModal) {
+        myModal.style.display = "none";
+    }
+});
 
 geoloc.addEventListener("click", () => {
     if (geoIcon.style.display !== "none") {
@@ -128,3 +131,32 @@ burger.addEventListener("click", () => {
     }
 });
 
+mentionslegales.addEventListener("click", () => {
+    myModal.style.display = "block";
+    document.getElementById("modalcontent").innerHTML = `<h1>Mentions Légales</h1>
+
+    <h2>1. Informations légales</h2>
+    <p>Raison sociale : [Nom de votre entreprise]</p>
+    <p>Statut juridique : [Forme juridique de votre entreprise]</p>
+    <p>Adresse : [Adresse de votre entreprise]</p>
+    <p>Email : [Votre adresse email]</p>
+    <p>Téléphone : [Votre numéro de téléphone]</p>
+
+    <h2>2. Hébergement du site</h2>
+    <p>Le site est hébergé par : [Nom de l'hébergeur]</p>
+    <p>Adresse : [Adresse de l'hébergeur]</p>
+
+    <h2>3. Propriété intellectuelle</h2>
+    <p>Le contenu du site est la propriété de [Nom de votre entreprise]. Toute reproduction totale ou partielle de ce contenu est interdite sans autorisation préalable.</p>
+
+    <h2>4. Collecte de données personnelles</h2>
+    <p>Les données personnelles collectées sur ce site sont uniquement destinées à [Nom de votre entreprise] et ne seront en aucun cas cédées à des tiers. Conformément à la loi [Loi sur la protection des données personnelles], vous disposez d'un droit d'accès, de modification et de suppression de vos données. Pour exercer ce droit, veuillez nous contacter à l'adresse [votre@email.com].</p>
+
+    <h2>5. Cookies</h2>
+    <p>Ce site utilise des cookies pour améliorer l'expérience utilisateur. En naviguant sur ce site, vous acceptez l'utilisation de cookies.</p>
+
+    <h2>6. Responsabilité</h2>
+    <p>[Nom de votre entreprise] décline toute responsabilité quant au contenu des sites externes liés à celui-ci.</p>
+
+    <p>Ces mentions légales ont été mises à jour le [Date de la dernière mise à jour].</p>`;
+}); 
