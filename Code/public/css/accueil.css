@@ -2,9 +2,7 @@ body {
   height: 100dvh;
 }
 
-#staticBackdrop {
-  top: 115em;
-}
+
 
 #modalHeader {
   display: flex;
@@ -12,6 +10,24 @@ body {
 
 #staticBackdrop {
   top: 115em;
+}
+
+.loadingscreen {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0D0D0D;
+}
+
+#searchModalBackdrop {
+    top: 115em;
+
 }
 
 #modalHeader {
@@ -24,6 +40,7 @@ body {
 }
 
 #modalWidth {
+
   width: 100vw;
   position: fixed;
   left: 0;
@@ -42,6 +59,7 @@ body {
 }
 
 .block {
+
   background-color: pink;
   width: calc(50% - 1em);
   margin: 0.5em;
@@ -151,15 +169,9 @@ body {
 }
 
 .geoloc-loc_blue {
-  display: none;
-  width: 110%;
-  margin: auto;
-}
-
-.geoloc-loc_blue {
-  display: none;
-  width: 110%;
-  margin: auto;
+    display: none;
+    width: 100%;
+    margin: auto;
 }
 
 .modal {
@@ -173,6 +185,7 @@ body {
 }
 
 .modal-content {
+
   position: absolute;
   top: 50%;
   left: 50%;

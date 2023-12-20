@@ -38,7 +38,7 @@ class AppFixtures extends Fixture
             $user = new User();
             $user->setNom($this->faker->word())
                 ->setPrenom($this->faker->word())
-                ->setEmail($this->faker->email)
+                ->setEmail($this->faker->email())
                 ->setGiftPoints(mt_rand(0, 1000));
             $user->setPassword($this->passwordHasher->hashPassword($user, 'password'));
 
@@ -53,9 +53,9 @@ class AppFixtures extends Fixture
             $cadeaux = new Cadeau();
             $cadeaux->setnom($this->faker->word())
                 ->setNomPartenaire($this->faker->word())
-                ->setSiteWebPartenaire($this->faker->url)
+                ->setSiteWebPartenaire($this->faker->url())
                 ->setDateExpiration($date_expiration)
-                ->setDescription($this->faker->text)
+                ->setDescription($this->faker->text())
                 ->addMembre($users[mt_rand(0, count($users) - 1)]);
 
             $manager->persist($cadeaux);
@@ -65,7 +65,7 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 50; $i++) {
             $commentairesLieu = new CommentairesLieu();
             $commentairesLieu->setTitre($this->faker->word())
-                ->setDescription($this->faker->text)
+                ->setDescription($this->faker->text())
                 ->setLieuGps($this->faker->randomNumber())
                 ->setNote(mt_rand(0, 5) == 5 ? mt_rand(0, 5) : null)
                 ->setMembre($users[mt_rand(0, count($users) - 1)]);
