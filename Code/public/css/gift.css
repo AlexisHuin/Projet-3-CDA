@@ -140,3 +140,9 @@ footer {
     color: white;
     text-transform: bold;
   }
+
+  .navigation span {
+    font-size: 3em;
+    margin: 0.2em;
+    color: grey;
+  }
