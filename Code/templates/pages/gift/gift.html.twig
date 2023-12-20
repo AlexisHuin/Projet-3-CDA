@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cadeaux
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/gift.css') }}">
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('js/gift.js') }}" defer></script>
+{% endblock %}
+{% block body %}
+	<header>
+		<div class="nav_gift">
+			<div class="nav_gift-logo">
+				<img id="logo" src="{{ asset('img/logoVDL.png') }}" alt="Logo Val De Loire">
+				<div class="logoReturn">
+					<img src="{{ asset('img/return.png') }}" alt="Retour">
+				</div>
+			</div>
+			<div class="researchBar">
+				<input class="ms-2 fs-2 text" type="text" placeholder="Quels cadeaux ?">
+				<button type="button" class="ms-1 btn btn-secondary fs-2 text">Rechercher</button>
+			</header>
+
+
+			<main>
+				<div class="condition">
+					<h1>Blabla titre</h1>
+					<p>blabla condition</p>
+				</div>
+
+				<button type="button" class="buttonMod btn btn-secondary fs-2 text mt-2 mx-auto text-center  mt-4 p-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Filtrer</button>
+				{# Modale pour filtré les catégorie #}
+				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					<div id="modaleTransition" class="modal-dialog">
+						<div id="modalWidth" class="modal-content">
+							<div id="modalHeader" class="modal-header">
+								<h1 class="modal-title  fs-1 text fw-bold" id="staticBackdropLabel">Catégorie Cadeau</h1>
+							</div>
+							<div id="modalBody" class="modal-body">
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+								<div class="block"></div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary fs-1 text" data-bs-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary fs-1 text">Valider</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				{# Fin de la modale pour filter les catégories #}
+
+				<div class="container mt-4">
+					{% for cadeau in cadeaux %}
+						<div class="accordion fs-2 text mt-2" id="accordionPanelsStayOpenExample">
+							<div class="accordion-item">
+								<h2 class="accordion-header">
+									<button class="accordion-button fs-1 text" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{ loop.index }}" aria-expanded="true" aria-controls="panelsStayOpen-collapse{{ loop.index }}">
+										{{ cadeau.nom }}
+									</button>
+								</h2>
+								<div id="panelsStayOpen-collapse{{ loop.index }}" class="accordion-collapse collapse">
+									<div class="accordion-body">
+										<div>{{ cadeau.description }}</div>
+										<div>
+											<a href='{{ cadeau.sitewebpartenaire }}'>
+												{{ cadeau.nompartenaire }}
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+					<div id="pagination" class="navigation mt-4 d-flex justify-content-center">
+					{{ knp_pagination_render(cadeaux) }}
+				</div>
+				</div>
+				
+			</main>
+			<footer>
+				<div class="gift_footer">
+					<a href="{{ path('user.index') }}">Connectez-vous !</a>
+				</div>
+			</footer>
+
+		{% endblock %}

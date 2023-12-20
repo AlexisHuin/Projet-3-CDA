@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Mon profil
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/user/profile.css') }}">
+
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<a href="{{path('user.index')}}">← Retour</a>
+
+		<h1 class="mt-4">Mon profil</h1>
+
+		{{ form(form) }}
+
+		</div>
+	{% endblock %}

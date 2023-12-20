@@ -13,8 +13,9 @@
 
 {% block body %}
 	<div id="map"></div>
-	<div class="content position-absolute top-0 end-0 mt-4 me-4 ">
-		<input id="searchBar" class="form-control me-sm-2 fs-1 text" data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="search" placeholder="Rechercher">
+	<div class="position-fixed top-0 end-0 mt-4 me-4">
+		<button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#searchModalBackdrop">Rechercher</button>
+
 	</div>
 	<div id="logo"></div>
 	<nav id="nav">
@@ -24,11 +25,12 @@
 		<a href="{{ path('app_gift') }}"><img src="{{ asset('img/gift.svg') }}" alt="Cadeaux"></a>
 		<a href="{{ path('main.index') }}"><img src="{{ asset('img/balance.svg') }}" alt="Mentions générales"></a>
 	</nav>
-	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<!-- Search modal -->
+	<div class="modal fade" id="searchModalBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="searchModalBackdropLabel" aria-hidden="true">
 		<div id="modaleTransition" class="modal-dialog">
 			<div id="modalWidth" class="modal-content">
 				<div id="modalHeader" class="modal-header">
-					<h1 class="modal-title  fs-1 text fw-bold" id="staticBackdropLabel">Catégories</h1>
+					<h1 class="modal-title  fs-1 text fw-bold" id="searchModalBackdropLabel">Catégories</h1>
 					<input class="fs-1 text me-1" type="text" placeholder="Quels lieux ?">
 				</div>
 				<div id="modalBody" class="modal-body">
@@ -50,10 +52,11 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="bottom_button burger">
-		<div class="contain_burger_line" id="line1"></div>
-		<div class="contain_burger_line" id="line2"></div>
-		<div class="contain_burger_line" id="line3"></div>
+		<div class="burger-line" id="burger-line1"></div>
+		<div class="burger-line" id="burger-line2"></div>
+		<div class="burger-line" id="burger-line3"></div>
 	</div>
 	<div class="bottom_button geoloc">
 		<img class="geoloc-loc" src="{{ asset('img/geo.png') }}" alt="Icone géolocalisation">

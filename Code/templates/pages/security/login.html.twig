@@ -6,6 +6,7 @@
 
 {% block body %}
 	<div class="container">
+		<a href="{{path('main.index')}}">Retour</a>
 		<h1 class="mt-4">Formulaire de connnexion</h1>
 
 		{% for message in app.flashes('success') %}
@@ -36,5 +37,8 @@
 				Se connecter
 			</button>
 		</form>
+		<p>Ou...
+			<a href="{{path('main.index')}}register">S'inscrire</a>
+		</p>
 	</div>
 {% endblock %}

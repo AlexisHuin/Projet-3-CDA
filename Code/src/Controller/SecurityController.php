@@ -52,7 +52,8 @@ class SecurityController extends AbstractController
     {
         $user = new User();
         $user->setRoles(['ROLE_USER'])
-            ->setAvatarUrl('/images/default_avatar.webp');
+            ->setAvatarUrl('default.webp')
+            ->setGiftPoints(0);
 
         $form = $this->createForm(RegistrationType::class, $user);
 
@@ -61,14 +62,13 @@ class SecurityController extends AbstractController
             $user = $form->getData();
             $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
 
+            $manager->persist($user);
+            $manager->flush();
+
             $this->addFlash(
                 'success',
                 'Votre compte a bien été créé.'
             );
-
-            $manager->persist($user);
-            $manager->flush();
-
             return $this->redirectToRoute('security.login');
         }
 
