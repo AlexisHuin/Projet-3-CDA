@@ -38,6 +38,8 @@ async function initMap() {
             markers.push(mark);
             mark.addListener("click", async () => {
                 try {
+                    document.getElementById("myModal").style.display = "block";
+                    document.getElementById("modalcontent").innerHTML = "Chargement...";
                     let response = await fetch("/api/details?l=" + d.id);
 
                     if (response.ok) {
@@ -52,7 +54,6 @@ async function initMap() {
                         let contextText = ` <img src="${preview}"> <br> <alt="Preview Image - ${preview}"> <br> Name : ${name} <br> Address : ${address} <br> wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a> <br> Description  : ${wikipedia_extracts}`;
 
                         document.getElementById('modalcontent').innerHTML = contextText;
-                        document.getElementById("myModal").style.display = "block";
                     } else {
                         console.error("La requête a échoué avec le statut :", response.status);
                     }
