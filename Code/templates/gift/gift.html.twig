@@ -6,14 +6,18 @@
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/gift.css') }}">
 {% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('js/gift.js') }}" defer></script>
+{% endblock %}
 {% block body %}
+
 	<header>
 		<div class="nav_gift">
 			<div class="nav_gift-logo">
 				<img id="logo" src="{{ asset('img/logoVDL.png') }}" alt="Logo Val De Loire">
-				<a class="logoReturn" href="#">
-					<img class="" src="{{ asset('img/return.png') }}" alt="Retour">
-				</a>
+				<div class="logoReturn">
+					<img  src="{{ asset('img/return.png') }}" alt="Retour">
+				</div>
 			</div>
 			<div class="researchBar">
 				<input class="ms-2 fs-2 text" type="text" placeholder="Quels cadeaux ?">
@@ -22,9 +26,12 @@
 
 
 			<main>
-				<div class="condition"></div>
+				<div class="condition">
+					<h1>Blabla titre</h1>
+					<p>blabla condition</p>
+				</div>
 
-				<button type="button" class="buttonMod btn btn-secondary fs-2 text mt-2 mx-auto text-center  mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Filtrer</button>
+				<button type="button" class="buttonMod btn btn-secondary fs-2 text mt-2 mx-auto text-center  mt-4 p-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Filtrer</button>
 				{# Modale pour filtré les catégorie #}
 				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 					<div id="modaleTransition" class="modal-dialog">
@@ -51,42 +58,99 @@
 						</div>
 					</div>
 				</div>
-        {# Fin de la modale pour filter les catégories #}
-        <div class="block_gift mx-auto mt-4">
-        <div class="block_gift-l">
-        <h1>Titre article</h1>
-        <p>Description article </p> 
-        </div>
-        <div class="block_gift-r">
-        <img src="{{ asset('img/logoVDL.png') }}" alt="">
-        </div>
-        </div>
-        <div class="block_gift mx-auto mt-4">
-        <div class="block_gift-l">
-        <h1>Titre article</h1>
-        <p>Description article </p> 
-        </div>
-        <div class="block_gift-r">
-        <img src="{{ asset('img/logoVDL.png') }}" alt="">
-        </div>
-        </div>
-        <div class="block_gift mx-auto mt-4">
-        <div class="block_gift-l">
-        <h1>Titre article</h1>
-        <p>Description article </p> 
-        </div>
-        <div class="block_gift-r">
-        <img src="{{ asset('img/logoVDL.png') }}" alt="">
-        </div>
-        </div>
-        <div class="block_gift mx-auto mt-4">
-        <div class="block_gift-l">
-        <h1>Titre article</h1>
-        <p>Description article </p> 
-        </div>
-        <div class="block_gift-r">
-        <img src="{{ asset('img/logoVDL.png') }}" alt="">
-        </div>
-        </div>
+				{# Fin de la modale pour filter les catégories #}
+				{# <div class="block_gift mx-auto mt-4">
+													<div class="block_gift-l">
+														<h1>Titre article</h1>
+														<p>Description article
+														</p>
+													</div>
+													<div class="block_gift-r">
+														<img src="{{ asset('img/logoVDL.png') }}" alt="">
+													</div>
+												</div>
+												<div class="block_gift mx-auto mt-4">
+													<div class="block_gift-l">
+														<h1>Titre article</h1>
+														<p>Description article
+														</p>
+													</div>
+													<div class="block_gift-r">
+														<img src="{{ asset('img/logoVDL.png') }}" alt="">
+													</div>
+												</div>
+												<div class="block_gift mx-auto mt-4">
+													<div class="block_gift-l">
+														<h1>Titre article</h1>
+														<p>Description article
+														</p>
+													</div>
+													<div class="block_gift-r">
+														<img src="{{ asset('img/logoVDL.png') }}" alt="">
+													</div>
+												</div>
+												<div class="block_gift mx-auto mt-4">
+													<div class="block_gift-l">
+														<h1>Titre article</h1>
+														<p>Description article
+														</p>
+													</div>
+													<div class="block_gift-r">
+														<img src="{{ asset('img/logoVDL.png') }}" alt="">
+													</div>
+												</div> #}
+												<div class="container mt-4">
+				<div class="accordion fs-2 text" id="accordionPanelsStayOpenExample">
+					<div class="accordion-item">
+						<h2 class="accordion-header ">
+							<button class="accordion-button fs-1 text" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+								Accordion Item #1
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+							<div class="accordion-body">
+								<strong>This is the first item's accordion body.</strong>
+								It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
+								<code>.accordion-body</code>, though the transition does limit overflow.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed fs-1 text" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+								Accordion Item #2
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+							<div class="accordion-body">
+								<strong>This is the second item's accordion body.</strong>
+								It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
+								<code>.accordion-body</code>, though the transition does limit overflow.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed fs-1 text" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+								Accordion Item #3
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+							<div class="accordion-body">
+								<strong>This is the third item's accordion body.</strong>
+								It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
+								<code>.accordion-body</code>, though the transition does limit overflow.
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
 			</main>
+			<footer>
+				<div class="gift_footer">
+					<a href="{{ path('user.index') }}">Connectez-vous !</a>
+
+				</div>
+			</footer>
+
 		{% endblock %}
