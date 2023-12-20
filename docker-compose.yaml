@@ -20,7 +20,6 @@ services:
     container_name: cda_projet2_php
     volumes:
       - ./Code/:/var/www/html/
-    command: bash -c "composer i && php-fpm"
     tmpfs: /tmp
     depends_on:
       - mariadb

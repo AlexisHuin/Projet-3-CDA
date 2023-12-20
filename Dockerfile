@@ -22,6 +22,16 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 # Install and configure PHP extensions
 RUN docker-php-ext-install opcache soap calendar sockets mysqli pdo pdo_mysql \
     && docker-php-ext-configure calendar \
-    && pecl install apcu i
+    && pecl install apcu
 
-RUN php bin/console doctrine:database:create
+# Copy Symfony project files
+COPY ./Code/ /var/www/html
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Install dependencies using Composer
+RUN composer install --no-dev --optimize-autoloader
+
+# Run Symfony console commands 
+RUN php bin/console doctrine:database:create && php bin/console doctrine:migrations:migrate --no-interaction
