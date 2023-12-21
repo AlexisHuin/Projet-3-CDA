@@ -73,7 +73,7 @@ class AppFixtures extends Fixture
             $commentairesLieu->setTitre($this->faker->word())
                 ->setDescription($this->faker->text())
                 ->setLieuId($lieux[mt_rand(0, count($lieux) - 1)])
-                ->setNote(mt_rand(0, 5) == 5 ? mt_rand(0, 5) : null)
+                ->setNote(mt_rand(1, 5))
                 ->setMembre($users[mt_rand(0, count($users) - 1)]);
 
             for ($j = 0; $j < mt_rand(0, 5); $j++) {
