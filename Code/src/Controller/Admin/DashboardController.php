@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Itineraire;
 use App\Entity\User;
 use App\Entity\Cadeau;
+use App\Entity\Stat;
 
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -35,7 +36,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateur', 'fas fa-bowl-rice', User::class);
         yield MenuItem::linkToCrud('Itineraire', 'fas fa-route', Itineraire::class);
         yield MenuItem::linkToCrud('Gift', 'fas fa-gift', Cadeau::class);
-        yield MenuItem::linkToCrud('nombre de visites', 'fas fa-chart-mixed');
+        yield MenuItem::linkToCrud('nombre de visites', 'fas fa-chart-mixed', Stats::class);
         
     }
 }
