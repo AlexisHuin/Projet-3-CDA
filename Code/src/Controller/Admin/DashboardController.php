@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\CommentairesLieu;
 use App\Entity\Itineraire;
 use App\Entity\User;
 use App\Entity\Cadeau;
@@ -19,7 +20,7 @@ class DashboardController extends AbstractDashboardController
     #[Route('/', name: 'admin.index')]
     public function index(): Response
     {
-        
+
         return $this->render('pages/admin/Admin.html.twig');
     }
 
@@ -36,7 +37,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateur', 'fas fa-bowl-rice', User::class);
         yield MenuItem::linkToCrud('Itineraire', 'fas fa-route', Itineraire::class);
         yield MenuItem::linkToCrud('Gift', 'fas fa-gift', Cadeau::class);
-        
-        
+        yield MenuItem::linkToCrud('Commentaires Lieu', 'fas fa-comment', CommentairesLieu::class);
+
     }
 }
