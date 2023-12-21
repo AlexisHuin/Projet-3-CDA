@@ -38,6 +38,7 @@ final class Version20231220102349 extends AbstractMigration
         $this->addSql('ALTER TABLE itineraire ADD CONSTRAINT FK_487C9A116A99F74A FOREIGN KEY (membre_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE itineraire_categorie ADD CONSTRAINT FK_1F2DEA9EA9B853B8 FOREIGN KEY (itineraire_id) REFERENCES itineraire (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE itineraire_categorie ADD CONSTRAINT FK_1F2DEA9EBCF5E72D FOREIGN KEY (categorie_id) REFERENCES categorie (id) ON DELETE CASCADE');
+        $this->addSql('CREATE TABLE statistiques (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, valeur INT NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema): void
@@ -61,5 +62,6 @@ final class Version20231220102349 extends AbstractMigration
         $this->addSql('DROP TABLE photo');
         $this->addSql('DROP TABLE user');
         $this->addSql('DROP TABLE messenger_messages');
+        $this->addSql('DROP TABLE statistiques');
     }
 }
