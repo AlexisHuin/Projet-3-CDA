@@ -28,6 +28,8 @@
 		<a href="{{ path('main.index') }}"><img src="{{ asset('img/group.svg') }}" alt="Géolocalisation"></a>
 		<a href="{{ path('app_gift') }}"><img src="{{ asset('img/gift.svg') }}" alt="Cadeaux"></a>
 		<a id="mentionslegales_btn" href="#"><img src="{{ asset('img/balance.svg') }}" alt="Mentions générales"></a>
+		<a href="{{path('contact.index') }}"><img src="{{ asset('img/contact.svg') }}" alt="Nous contacter"></a>
+
 	</nav>
 	<!-- Search modal -->
 	<div class="modal fade" id="searchModalBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="searchModalBackdropLabel" aria-hidden="true">
@@ -38,13 +40,27 @@
 					<input class="fs-1 text me-1" type="text" placeholder="Quels lieux ?">
 				</div>
 				<div id="modalBody" class="modal-body">
-					<div class="block nonfiltré"><h2>Tout</h2></div>
-					<div class="block chateau"><h2>Chateau</h2></div>
-					<div class="block histoire"><h2>Historique</h2></div>
-					<div class="block culture"><h2>Culturel</h2></div>
-					<div class="block place"><h2>Lieu intéréssant</h2></div>
-					<div class="block religion"><h2>Religieux</h2></div>
-					<div class="block restaurant"><h2>Restaurant</h2></div>
+					<div class="block nonfiltré">
+						<h2>Tout</h2>
+					</div>
+					<div class="block chateau">
+						<h2>Chateau</h2>
+					</div>
+					<div class="block histoire">
+						<h2>Historique</h2>
+					</div>
+					<div class="block culture">
+						<h2>Culturel</h2>
+					</div>
+					<div class="block place">
+						<h2>Lieu intéréssant</h2>
+					</div>
+					<div class="block religion">
+						<h2>Religieux</h2>
+					</div>
+					<div class="block restaurant">
+						<h2>Restaurant</h2>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary fs-1 text" data-bs-dismiss="modal">Retour</button>

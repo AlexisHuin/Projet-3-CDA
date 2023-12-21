@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\CommentairesLieu;
+use App\Entity\Contact;
 use App\Entity\Itineraire;
 
 use App\Entity\User;
@@ -23,16 +24,18 @@ class DashboardController extends AbstractDashboardController
     {
 
         return $this->render('pages/admin/Admin.html.twig');
-    }
 
+    }
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
             ->setTitle('LoireValley - Admin')
             ->renderContentMaximized()
             ->setlocales([
+
                 'fr'=>'Francais',
                 'en'=>'English'
+
             ]);
     }
 
@@ -43,6 +46,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Itineraire', 'fas fa-route', Itineraire::class);
         yield MenuItem::linkToCrud('Gift', 'fas fa-gift', Cadeau::class);
         yield MenuItem::linkToCrud('Commentaires Lieu', 'fas fa-comment', CommentairesLieu::class);
+        yield MenuItem::linkToCrud('Contact', 'fas fa-comment', Contact::class);
 
     }
     
