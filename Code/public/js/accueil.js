@@ -7,8 +7,8 @@ const escapeHtml = (unsafe) => {
     .replaceAll("'", "&#039;");
 };
 
-
-let map, markers = [];
+let map,
+  markers = [];
 let myModal = document.getElementById("myModal");
 let geoloc = document.querySelector(".geoloc");
 let geoIcon = document.querySelector(".geoloc-loc");
@@ -17,7 +17,6 @@ let burger = document.querySelector(".burger");
 let nav = document.querySelector("#nav");
 let logoPlace = document.querySelector("#logo");
 let mentionslegales = document.querySelector("#mentionslegales_btn");
-
 
 async function initMap() {
   const zoom = 8.35;
@@ -32,61 +31,69 @@ async function initMap() {
         north: 48.1,
         south: 46.8,
         west: -1.7,
-        east: 2.4
-      }
+        east: 2.4,
+      },
     },
     styles: [
       {
-        featureType: 'poi',
-        elementType: 'labels',
-        stylers: [{ visibility: 'off' }]
-      }
-    ]
+        featureType: "poi",
+        elementType: "labels",
+        stylers: [{ visibility: "off" }],
+      },
+    ],
   });
-  await fetch("/api/search").then(res => res.json().then(data => {
-    console.log(data)
-    data.results.forEach(d => {
-      let mark = new google.maps.Marker({
-        map,
-        position: { lat: d.lat, lng: d.long },
-        title: d.name,
-      });
-      markers.push(mark);
-      mark.addListener("click", async () => {
-        try {
-          myModal.style.display = "block";
-          document.getElementById("modalcontent").innerHTML = "Chargement...";
-          let response = await fetch("/api/details?l=" + d.id);
+  await fetch("/api/search")
+    .then((res) =>
+      res.json().then((data) => {
+        console.log(data);
+        data.results.forEach((d) => {
+          let mark = new google.maps.Marker({
+            map,
+            position: { lat: d.lat, lng: d.long },
+            title: d.name,
+          });
+          markers.push(mark);
+          mark.addListener("click", async () => {
+            try {
+              myModal.style.display = "block";
+              document.getElementById("modalcontent").innerHTML =
+                "Chargement...";
+              let response = await fetch("/api/details?l=" + d.id);
 
+              if (response.ok) {
+                let data = (await response.json()).data;
 
-          if (response.ok) {
-            let data = (await response.json()).data;
+                let name = data.name;
+                let preview = data.preview.source;
+                let address = data.address.county;
+                let wikipedia = data.wikipedia;
+                let wikipedia_extracts = data.wikipedia_extracts.text;
 
-            let name = data.name;
-            let preview = data.preview.source;
-            let address = data.address.county;
-            let wikipedia = data.wikipedia;
-            let wikipedia_extracts = data.wikipedia_extracts.text;
+                let contextText = ` <img src="${preview}"> <br> <alt="Preview Image - ${preview}"> <br> Name : ${name} <br> Address : ${address} <br> wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a> <br> Description  : ${wikipedia_extracts}`;
 
-            let contextText = ` <img src="${preview}"> <br> <alt="Preview Image - ${preview}"> <br> Name : ${name} <br> Address : ${address} <br> wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a> <br> Description  : ${wikipedia_extracts}`;
-
-
-            document.getElementById('modalcontent').innerHTML = contextText;
-          } else {
-            console.error("La requête a échoué avec le statut :", response.status);
-          }
-        } catch (error) {
-          console.error("Erreur lors de la récupération des données :", error);
-        }
-
-      });
-      window.addEventListener("click", (event) => {
-        if (event.target == document.getElementById("myModal")) {
-          document.getElementById("myModal").style.display = "none";
-        }
-      });
-    });
-  })).catch(err => console.error(err));
+                document.getElementById("modalcontent").innerHTML = contextText;
+              } else {
+                console.error(
+                  "La requête a échoué avec le statut :",
+                  response.status
+                );
+              }
+            } catch (error) {
+              console.error(
+                "Erreur lors de la récupération des données :",
+                error
+              );
+            }
+          });
+          window.addEventListener("click", (event) => {
+            if (event.target == document.getElementById("myModal")) {
+              document.getElementById("myModal").style.display = "none";
+            }
+          });
+        });
+      })
+    )
+    .catch((err) => console.error(err));
   document.getElementsByClassName("loadingscreen")[0].remove();
 }
 
@@ -146,7 +153,6 @@ burger.addEventListener("click", () => {
   }
 });
 
-
 mentionslegales.addEventListener("click", () => {
   myModal.style.display = "block";
   document.getElementById("modalcontent").innerHTML = `<h1>Mentions Légales</h1>
@@ -176,4 +182,9 @@ mentionslegales.addEventListener("click", () => {
 
     <p>Ces mentions légales ont été mises à jour le [Date de la dernière mise à jour].</p>`;
 });
+
+
+
+
+
 

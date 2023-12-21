@@ -90,15 +90,91 @@ main {
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
+    justify-content: center;
 }
 
+#modalWidth {
+    width: 100vw;
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    max-height: 65vh;
+  }
+
+  .modal-content {
+
+    max-width: 70vw;
+   position: absolute;
+    top: 50%;
+    left: 50%;
+    height: max-content;
+    transform: translate(-50%, -50%);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+  }
+  
 .block {
-    background-color: pink;
-    width: calc(50% - 1em);
-    margin: 0.5em;
+    width: 250px;
+    margin: 1.5em;
     box-sizing: border-box;
     height: 10em;
-}
+   
+    z-index: 1;
+   
+    justify-content: center;
+    display: flex;
+   
+  }
+
+  .block h2 {
+    font-size: 2vh;
+   font-weight: bold;
+  }
+  
+  .nonfiltré {
+    background-image: url(../img/tout.png);
+    background-size: cover;
+    color: black;
+  }
+
+  .restaurant {
+    background-image: url(../img/restaurantg.jpg);
+    background-size: cover;
+    color: white;
+  }
+
+  .parc {
+    background-image: url(../img/parcg.jpg);
+    background-size: cover;
+    color: black;
+   
+  }
+
+
+
+  .boutique {
+    background-image: url(../img/boutiqueg.jpg);
+    background-size: cover;
+    color: black;
+  }
+
+  .vin {
+    background-image: url(../img/ving.jpg);
+    background-size: cover;
+    color: white;
+  }
+
+  .transport {
+    background-image: url(../img/transportg.jpg);
+    background-size: cover;
+    color: black;
+  }
+
+ 
 
 .modal-footer>button {
     flex: 1;
@@ -157,3 +233,10 @@ footer {
   color: grey;
 }
 
+
+@media (min-width: 1320px) {
+    #modalWidth {
+      width: 48vw !important;
+      
+  } 
+}

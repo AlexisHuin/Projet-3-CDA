@@ -295,6 +295,10 @@ background-size: cover;
 }
 
 @media (min-width: 1320px) {
+  #modalWidth {
+    width: 48vw !important;
+    
+}
   .bottom_button {
     width: 7vh;
     height: 7vh;
