@@ -37,6 +37,9 @@ class Cadeau
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'cadeaux')]
     private Collection $membre;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $categories = null;
+
     public function __construct()
     {
         $this->membre = new ArrayCollection();
@@ -133,6 +136,18 @@ class Cadeau
     public function removeMembre(User $membre): static
     {
         $this->membre->removeElement($membre);
+
+        return $this;
+    }
+
+    public function getCategories(): ?string
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(string $categories): static
+    {
+        $this->categories = $categories;
 
         return $this;
     }
