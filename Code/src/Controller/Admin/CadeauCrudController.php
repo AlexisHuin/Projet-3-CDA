@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeImmutableToDateTimeTransformer;
 
 
 
@@ -37,8 +38,8 @@ class CadeauCrudController extends AbstractCrudController
             TextField::new('nom'),
             TextField::new('site_web_partenaire'),
             ArrayField::new('description'),
-            DateTimeField::new('created_at'),
-            DateTimeField::new('date_expiration')
+            // DateTimeField::new('created_at'),
+            // TextField::new('date_expiration')
             
         ];
     }

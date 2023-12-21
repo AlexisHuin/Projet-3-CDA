@@ -37,7 +37,7 @@ class UserCrudController extends AbstractCrudController
             ArrayField::new('roles'),
             TextField::new('password'),
             ArrayField::new('gift_points'),
-            DateTimeField::new('created_at'),
+            
             TextField::new('avatar_url'),
 
             
