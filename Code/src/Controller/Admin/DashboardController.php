@@ -32,8 +32,10 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('LoireValley - Admin')
             ->renderContentMaximized()
             ->setlocales([
-                'fr' => 'Francais',
-                'en' => 'English'
+
+                'fr'=>'Francais',
+                'en'=>'English'
+
             ]);
     }
 
@@ -47,4 +49,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Contact', 'fas fa-comment', Contact::class);
 
     }
+    
+        
+        
+    
+
 }

@@ -8,6 +8,7 @@
 {% endblock %}
 {% block javascripts %}
 	<script src="{{ asset('js/accueil.js') }}" defer></script>
+	<script src="{{ asset('js/filtrage.js') }}" defer></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBj0wyoLcY-O1Moukg9q-rI3a5cy3Dk_m4&callback=initMap&v=weekly" defer></script>
 
 {% endblock %}
@@ -79,7 +80,7 @@
 		<img class="geoloc-loc_blue" src="{{ asset('img/geo-blue.png') }}" alt="Icone géolocalisation">
 	</div>
 	<div id="myModal" class="modal">
-		<div class="modal-content">
+		<div class="modal-content" id="modal-content_commentaire">
 			<span class="close">&times;</span>
 			<div id="modalcontent"></div>
 		</div>

@@ -11,6 +11,12 @@
 	<div id="form" class=" container-flex p-5">
 		<a href="{{path('main.index')}}">Retour</a>
 		<h1 class="text-capitalize">Formulaire de contact Loire Valley</h1>
+		<h1>Nous contacter</h1>
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success mt-4">
+				{{ message }}
+			</div>
+		{% endfor %}
 		{{ form(form) }}
 		</div>
 	{% endblock %}
