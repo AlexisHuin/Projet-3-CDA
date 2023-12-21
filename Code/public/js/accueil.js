@@ -64,12 +64,12 @@ async function initMap() {
                     let address = details.address.county;
                     let wikipedia = details.wikipedia;
                     let wikipedia_extracts = details.wikipedia_extracts.text;
-                    let contextText = ` <img src="${preview}" alt="Preview Image - ${preview}"> <p>Name : ${name}</p><p>Address : ${address}</p><p>wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a></p> <p>Description  : ${wikipedia_extracts}</p> <h2>Commentaires</h2>`;
+                    let contextText = ` <img src="${preview}" alt="Preview Image - ${preview}"> <p>Name : ${name}</p><p>Address : ${address}</p><p><a href="${wikipedia}" target="_blank">Wikipedia</a></p> <p>Description  : ${wikipedia_extracts}</p> <h2>Commentaires</h2>`;
                     if (commentaires.found === false) {
                         contextText += `<p>${commentaires.msg}</p>`;
                     } else {
                         commentaires.comments.forEach(c => {
-                            contextText += `<div class="commentaire"><h3>${c.user}</h3><p>${escapeHtml(c.comment)}</p></div>`;
+                            contextText += `<div class="commentaire"> <div class='commentaire_photo'><h3>${c.user}</h3> <img src='/user_imgs/avatars/${c.user_avatar}'> </div> <p>${escapeHtml(c.comment)}</p></div>`;
                         });
                     }
                     document.getElementById('modalcontent').innerHTML = contextText;
