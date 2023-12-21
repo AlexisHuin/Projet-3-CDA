@@ -109,13 +109,18 @@ class ApiController extends AbstractController
         }
         $commsJson = [];
         foreach ($comments as $c) {
+            $photos = [];
+            foreach ($c->getPhotos() as $p) {
+                $photos[] = $p->getUrl();
+            }
             $commsJson[] = [
                 'title' => $c->getTitre(),
                 'comment' => $c->getDescription(),
                 'date' => $c->getCreatedAt(),
                 'note' => $c->getNote(),
                 'user' => $c->getMembre()->getNom() . ' ' . $c->getMembre()->getPrenom(),
-                'user_avatar' => $c->getMembre()->getAvatarUrl()
+                'user_avatar' => $c->getMembre()->getAvatarUrl(),
+                'photos' => $photos
             ];
         }
         return new JsonResponse(['found' => true, 'comments' => $commsJson]);
