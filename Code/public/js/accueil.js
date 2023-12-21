@@ -43,7 +43,9 @@ async function initMap() {
       }
     ]
   });
-  await fetch("/api/search").then(res => res.json().then(data => {
+
+  await fetch("/api/get_places").then(res => res.json().then(data => {
+
     data.results.forEach(d => {
       let mark = new google.maps.Marker({
         map,
@@ -55,25 +57,22 @@ async function initMap() {
         try {
           myModal.style.display = "block";
           document.getElementById("modalcontent").innerHTML = "Chargement...";
-          let response = await fetch("/api/details?l=" + d.id);
-
-
-          if (response.ok) {
-            let data = (await response.json()).data;
-
-            let name = data.name;
-            let preview = data.preview.source;
-            let address = data.address.county;
-            let wikipedia = data.wikipedia;
-            let wikipedia_extracts = data.wikipedia_extracts.text;
-
-            let contextText = ` <img src="${preview}"> <br> <alt="Preview Image - ${preview}"> <br> Name : ${name} <br> Address : ${address} <br> wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a> <br> Description  : ${wikipedia_extracts}`;
-
-
-            document.getElementById('modalcontent').innerHTML = contextText;
+          let details = (await (await fetch(`/api/places/${d.id}/details`)).json()).data;
+          let commentaires = (await (await fetch(`/api/places/${d.id}/comments`)).json());
+          let name = details.name;
+          let preview = details.preview.source;
+          let address = details.address.county;
+          let wikipedia = details.wikipedia;
+          let wikipedia_extracts = details.wikipedia_extracts.text;
+          let contextText = ` <img src="${preview}" alt="Preview Image - ${preview}"> <p>Name : ${name}</p><p>Address : ${address}</p><p>wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a></p> <p>Description  : ${wikipedia_extracts}</p> <h2>Commentaires</h2>`;
+          if (commentaires.found === false) {
+            contextText += `<p>${commentaires.msg}</p>`;
           } else {
-            console.error("La requête a échoué avec le statut :", response.status);
+            commentaires.comments.forEach(c => {
+              contextText += `<div class="commentaire"><h3>${c.author}</h3><p>${escapeHtml(c.content)}</p></div>`;
+            });
           }
+          document.getElementById('modalcontent').innerHTML = contextText;
         } catch (error) {
           console.error("Erreur lors de la récupération des données :", error);
         }

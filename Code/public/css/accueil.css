@@ -38,6 +38,10 @@ body {
   flex: 1;
 }
 
+.modal-title {
+  margin-right: 1vh;
+}
+
 
 #modalWidth {
   width: 100vw;
@@ -62,11 +66,62 @@ body {
 }
 
 .block {
-  background-color: pink;
   width: 250px;
   margin: 0.5em;
   box-sizing: border-box;
   height: 10em;
+  
+  z-index: 1;
+  color: white;
+  justify-content: center;
+  display: flex;
+ 
+}
+
+.block h2 {
+  font-size: 2vh;
+  font-weight: bold;
+}
+.nonfiltré {
+  background-image: url(../img/tout.png);
+  background-size: cover;
+  color: black;
+}
+
+.chateau {
+background-image: url(../img/chateau.jpg);
+background-size: cover;
+
+}
+
+.histoire {
+  background-image: url(../img/histoire.jpg);
+  background-size: cover;
+  
+}
+
+.culture {
+  background-image: url(../img/culture.jpg);
+  background-size: cover;
+  
+}
+
+.place {
+  background-image: url(../img/place.jpg);
+  background-size: cover;
+  
+}
+
+.religion {
+  background-image: url(../img/religion.jpg);
+  background-size: cover;
+  
+}
+
+.restaurant {
+  background-image: url(../img/restau.jpg);
+  background-size: cover;
+  
 }
 
 .modal-footer>button {
@@ -115,13 +170,12 @@ body {
 }
 
 #nav a img {
-  width: 100%;
+  width: 120%;
 }
 
 .bottom_button {
   z-index: 1;
-
-  border-radius: 45px;
+  border-radius: 2vh;
   background-color: rgba(0, 0, 0, 0.392);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   position: fixed;

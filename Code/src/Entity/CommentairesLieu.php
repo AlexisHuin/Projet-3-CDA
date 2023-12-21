@@ -30,8 +30,9 @@ class CommentairesLieu
     #[ORM\JoinColumn(nullable: false)]
     private ?User $membre = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $lieu_gps = null;
+    #[ORM\Column(length: 50)]
+    private ?string $lieu_id = null;
+
 
     public function __construct()
     {
@@ -96,14 +97,14 @@ class CommentairesLieu
         return $this;
     }
 
-    public function getLieuGps(): ?array
+    public function getLieuId(): ?string
     {
-        return $this->lieu_gps;
+        return $this->lieu_id;
     }
 
-    public function setLieuGps( string $lieu_gps): static
+    public function setLieuId(string $lieu_id): static
     {
-        $this->lieu_gps = $lieu_gps;
+        $this->lieu_id = $lieu_id;
 
         return $this;
     }
