@@ -9,15 +9,6 @@
 {% block javascripts %}
 	<script src="{{ asset('js/accueil.js') }}" defer></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBj0wyoLcY-O1Moukg9q-rI3a5cy3Dk_m4&callback=initMap&v=weekly" defer></script>
-	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-		<script>
-			const isAuthd = true;
-		</script>
-	{% else %}
-		<script>
-			const isAuthd = false;
-		</script>
-	{% endif %}
 
 {% endblock %}
 
