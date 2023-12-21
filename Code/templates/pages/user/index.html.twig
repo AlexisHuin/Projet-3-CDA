@@ -1,12 +1,9 @@
 {% extends "base.html.twig" %}
-
 {% block title %}
 	Mon profil
 {% endblock %}
-
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('css/user/profile.css') }}">
-
 {% endblock %}
 
 {% block body %}
@@ -19,7 +16,7 @@
 			<img src="{{ asset('user_imgs/avatars/' ~ app.user.getAvatarUrl()) }}" alt="">
 			<p>Vous avez publié
 				<strong>{{comm_count}}</strong>
-				comentaires</p>
+				commentaires</p>
 			<p>
 				<strong>Email :</strong>
 				{{app.user.email}}</p>

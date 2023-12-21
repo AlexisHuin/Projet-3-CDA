@@ -9,13 +9,16 @@
 {% block javascripts %}
 	<script src="{{ asset('js/accueil.js') }}" defer></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBj0wyoLcY-O1Moukg9q-rI3a5cy3Dk_m4&callback=initMap&v=weekly" defer></script>
+
 {% endblock %}
 
 {% block body %}
+	<div class="loadingscreen">
+		<img src="{{asset('img/logoVDL.png')}}" alt="Logo">
+	</div>
 	<div id="map"></div>
 	<div class="position-fixed top-0 end-0 mt-4 me-4">
 		<button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#searchModalBackdrop">Rechercher</button>
-
 	</div>
 	<div id="logo"></div>
 	<nav id="nav">
@@ -23,7 +26,7 @@
 		<a href="{{ path('main.index') }}"><img src="{{ asset('img/map.svg') }}" alt="Itinéraire"></a>
 		<a href="{{ path('main.index') }}"><img src="{{ asset('img/group.svg') }}" alt="Géolocalisation"></a>
 		<a href="{{ path('app_gift') }}"><img src="{{ asset('img/gift.svg') }}" alt="Cadeaux"></a>
-		<a href="{{ path('main.index') }}"><img src="{{ asset('img/balance.svg') }}" alt="Mentions générales"></a>
+		<a id="mentionslegales_btn" href="#"><img src="{{ asset('img/balance.svg') }}" alt="Mentions générales"></a>
 	</nav>
 	<!-- Search modal -->
 	<div class="modal fade" id="searchModalBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="searchModalBackdropLabel" aria-hidden="true">
@@ -63,10 +66,10 @@
 		<img class="geoloc-loc_blue" src="{{ asset('img/geo-blue.png') }}" alt="Icone géolocalisation">
 	</div>
 	<div id="myModal" class="modal">
-	<div class="modal-content">
-	<span class="close">&times;</span>
-	<div id="modalcontent"></div>
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<div id="modalcontent"></div>
+		</div>
 	</div>
-  </div>
 
 {% endblock %}
