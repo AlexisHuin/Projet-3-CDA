@@ -43,7 +43,9 @@ async function initMap() {
       }
     ]
   });
+
   await fetch("/api/get_places").then(res => res.json().then(data => {
+
     data.results.forEach(d => {
       let mark = new google.maps.Marker({
         map,
