@@ -56,7 +56,8 @@ class AppFixtures extends Fixture
                 ->setSiteWebPartenaire($this->faker->url())
                 ->setDateExpiration($date_expiration)
                 ->setDescription($this->faker->text())
-                ->addMembre($users[mt_rand(0, count($users) - 1)]);
+                ->addMembre($users[mt_rand(0, count($users) - 1)])
+                ->setCategories("bonjour,jaimelavie,promo15");
 
             $manager->persist($cadeaux);
         }
