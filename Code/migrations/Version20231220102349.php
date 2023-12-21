@@ -24,7 +24,7 @@ final class Version20231220102349 extends AbstractMigration
         $this->addSql('CREATE TABLE cadeau_user (cadeau_id INT NOT NULL, user_id INT NOT NULL, INDEX IDX_65AADA80D9D5ED84 (cadeau_id), INDEX IDX_65AADA80A76ED395 (user_id), PRIMARY KEY(cadeau_id, user_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE categorie (id INT AUTO_INCREMENT NOT NULL, libelle VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE commentaires_itineraire (id INT AUTO_INCREMENT NOT NULL, itineraire_id INT NOT NULL, membre_id INT NOT NULL, titre VARCHAR(255) NOT NULL, description LONGTEXT NOT NULL, note INT DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_DB0C4D02A9B853B8 (itineraire_id), INDEX IDX_DB0C4D026A99F74A (membre_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE commentaires_lieu (id INT AUTO_INCREMENT NOT NULL, membre_id INT NOT NULL, titre VARCHAR(255) NOT NULL, description LONGTEXT NOT NULL, note INT DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', lieu_gps VARCHAR(255) NOT NULL, INDEX IDX_879000136A99F74A (membre_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE commentaires_lieu (id INT AUTO_INCREMENT NOT NULL, membre_id INT NOT NULL, titre VARCHAR(255) NOT NULL, description LONGTEXT NOT NULL, note INT DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', lieu_id VARCHAR(255) NOT NULL, INDEX IDX_879000136A99F74A (membre_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE itineraire (id INT AUTO_INCREMENT NOT NULL, membre_id INT NOT NULL, titre VARCHAR(255) NOT NULL, description LONGTEXT NOT NULL, lieux LONGTEXT NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_487C9A116A99F74A (membre_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE itineraire_categorie (itineraire_id INT NOT NULL, categorie_id INT NOT NULL, INDEX IDX_1F2DEA9EA9B853B8 (itineraire_id), INDEX IDX_1F2DEA9EBCF5E72D (categorie_id), PRIMARY KEY(itineraire_id, categorie_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE photo (id INT AUTO_INCREMENT NOT NULL, url VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -38,6 +38,7 @@ final class Version20231220102349 extends AbstractMigration
         $this->addSql('ALTER TABLE itineraire ADD CONSTRAINT FK_487C9A116A99F74A FOREIGN KEY (membre_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE itineraire_categorie ADD CONSTRAINT FK_1F2DEA9EA9B853B8 FOREIGN KEY (itineraire_id) REFERENCES itineraire (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE itineraire_categorie ADD CONSTRAINT FK_1F2DEA9EBCF5E72D FOREIGN KEY (categorie_id) REFERENCES categorie (id) ON DELETE CASCADE');
+        $this->addSql('CREATE TABLE statistiques (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, valeur INT NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema): void
@@ -61,5 +62,6 @@ final class Version20231220102349 extends AbstractMigration
         $this->addSql('DROP TABLE photo');
         $this->addSql('DROP TABLE user');
         $this->addSql('DROP TABLE messenger_messages');
+        $this->addSql('DROP TABLE statistiques');
     }
 }
