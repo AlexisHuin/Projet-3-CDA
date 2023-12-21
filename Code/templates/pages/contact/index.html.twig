@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<a href="{{path('main.index')}}">Retour</a>
+
+
+		<h1>Nous contacter</h1>
+		{{ form(form) }}
+		</div>
+	{% endblock %}
