@@ -4,33 +4,28 @@ namespace App\Controller\Admin;
 
 use App\Entity\Cadeau;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeImmutableToDateTimeTransformer;
 
 
 
 class CadeauCrudController extends AbstractCrudController
 {
-    public static function getEntityFqcn() :string
-    {
-        {
+    public static function getEntityFqcn(): string
+    { {
             return Cadeau::class;
         }
     }
-    public function configureCrud(Crud $crud):Crud
+    public function configureCrud(Crud $crud): Crud
     {
-        return $crud 
-                ->setEntityLabelInPlural('Cadeaux')
-                ->setEntityLabelInSingular('Cadeaux')
-                ->setPageTitle('index', 'Loire Valley Gestion des Cadeaux');
+        return $crud
+            ->setEntityLabelInPlural('Cadeaux')
+            ->setEntityLabelInSingular('Cadeaux')
+            ->setPageTitle('index', 'Loire Valley Gestion des Cadeaux');
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -40,8 +35,8 @@ class CadeauCrudController extends AbstractCrudController
             ArrayField::new('description'),
             // DateTimeField::new('created_at'),
             // TextField::new('date_expiration')
-            
+
         ];
     }
-    
+
 }

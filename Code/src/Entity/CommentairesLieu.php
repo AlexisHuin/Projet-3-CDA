@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommentairesLieuRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -33,10 +35,14 @@ class CommentairesLieu
     #[ORM\Column(length: 50)]
     private ?string $lieu_id = null;
 
+    #[ORM\ManyToMany(targetEntity: Photo::class)]
+    private Collection $photos;
+
 
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
+        $this->photos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -105,6 +111,30 @@ class CommentairesLieu
     public function setLieuId(string $lieu_id): static
     {
         $this->lieu_id = $lieu_id;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Photo>
+     */
+    public function getPhotos(): Collection
+    {
+        return $this->photos;
+    }
+
+    public function addPhoto(Photo $photo): static
+    {
+        if (!$this->photos->contains($photo)) {
+            $this->photos->add($photo);
+        }
+
+        return $this;
+    }
+
+    public function removePhoto(Photo $photo): static
+    {
+        $this->photos->removeElement($photo);
 
         return $this;
     }
