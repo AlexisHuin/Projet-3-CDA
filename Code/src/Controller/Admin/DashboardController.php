@@ -4,9 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\CommentairesLieu;
 use App\Entity\Itineraire;
+
 use App\Entity\User;
 use App\Entity\Cadeau;
-use App\Entity\Stat;
+
 
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -22,13 +23,17 @@ class DashboardController extends AbstractDashboardController
     {
 
         return $this->render('pages/admin/Admin.html.twig');
+        
     }
-
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
             ->setTitle('LoireValley - Admin')
-            ->renderContentMaximized();
+            ->renderContentMaximized()
+            ->setlocales([
+                'fr'=>'Francais',
+                'en'=>'English'
+            ]);
     }
 
     public function configureMenuItems(): iterable
@@ -40,4 +45,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Commentaires Lieu', 'fas fa-comment', CommentairesLieu::class);
 
     }
+    
+        
+        
+    
+
 }
