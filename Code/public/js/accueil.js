@@ -57,6 +57,7 @@ async function initMap() {
           document.getElementById("modalcontent").innerHTML = "Chargement...";
           let details = (await (await fetch(`/api/places/${d.id}/details`)).json()).data;
           let commentaires = (await (await fetch(`/api/places/${d.id}/comments`)).json());
+          console.log(commentaires);
           let name = details.name;
           let preview = details.preview.source;
           let address = details.address.county;
@@ -67,7 +68,7 @@ async function initMap() {
             contextText += `<p>${commentaires.msg}</p>`;
           } else {
             commentaires.comments.forEach(c => {
-              contextText += `<div class="commentaire"><h3>${c.author}</h3><p>${escapeHtml(c.content)}</p></div>`;
+              contextText += `<div class="commentaire"><h3>${c.user}</h3><p>${escapeHtml(c.comment)}</p></div>`;
             });
           }
           document.getElementById('modalcontent').innerHTML = contextText;
@@ -75,11 +76,6 @@ async function initMap() {
           console.error("Erreur lors de la récupération des données :", error);
         }
 
-      });
-      window.addEventListener("click", (event) => {
-        if (event.target == document.getElementById("myModal")) {
-          document.getElementById("myModal").style.display = "none";
-        }
       });
     });
   })).catch(err => console.error(err));
