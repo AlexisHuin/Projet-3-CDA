@@ -1,10 +1,10 @@
 const escapeHtml = (unsafe) => {
-  return unsafe
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+    return unsafe
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 };
 
 
@@ -20,134 +20,130 @@ let mentionslegales = document.querySelector("#mentionslegales_btn");
 
 
 async function initMap() {
-  const zoom = 8.35;
-  var center = new google.maps.LatLng(47.5751, 0.31366);
-  map = new google.maps.Map(document.getElementById("map"), {
-    zoom,
-    center,
-    minZoom: zoom,
-    disableDefaultUI: true,
-    restriction: {
-      latLngBounds: {
-        north: 48.1,
-        south: 46.8,
-        west: -1.7,
-        east: 2.4
-      }
-    },
-    styles: [
-      {
-        featureType: 'poi',
-        elementType: 'labels',
-        stylers: [{ visibility: 'off' }]
-      }
-    ]
-  });
-
-  await fetch("/api/get_places").then(res => res.json().then(data => {
-
-    data.results.forEach(d => {
-      let mark = new google.maps.Marker({
-        map,
-        position: { lat: d.lat, lng: d.long },
-        title: d.name,
-      });
-      markers.push(mark);
-      mark.addListener("click", async () => {
-        try {
-          myModal.style.display = "block";
-          document.getElementById("modalcontent").innerHTML = "Chargement...";
-          let details = (await (await fetch(`/api/places/${d.id}/details`)).json()).data;
-          let commentaires = (await (await fetch(`/api/places/${d.id}/comments`)).json());
-          let name = details.name;
-          let preview = details.preview.source;
-          let address = details.address.county;
-          let wikipedia = details.wikipedia;
-          let wikipedia_extracts = details.wikipedia_extracts.text;
-          let contextText = ` <img src="${preview}" alt="Preview Image - ${preview}"> <p>Name : ${name}</p><p>Address : ${address}</p><p>wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a></p> <p>Description  : ${wikipedia_extracts}</p> <h2>Commentaires</h2>`;
-          if (commentaires.found === false) {
-            contextText += `<p>${commentaires.msg}</p>`;
-          } else {
-            commentaires.comments.forEach(c => {
-              contextText += `<div class="commentaire"><h3>${c.author}</h3><p>${escapeHtml(c.content)}</p></div>`;
-            });
-          }
-          document.getElementById('modalcontent').innerHTML = contextText;
-        } catch (error) {
-          console.error("Erreur lors de la récupération des données :", error);
-        }
-
-      });
-      window.addEventListener("click", (event) => {
-        if (event.target == document.getElementById("myModal")) {
-          document.getElementById("myModal").style.display = "none";
-        }
-      });
+    const zoom = 8.35;
+    var center = new google.maps.LatLng(47.5751, 0.31366);
+    map = new google.maps.Map(document.getElementById("map"), {
+        zoom,
+        center,
+        minZoom: zoom,
+        disableDefaultUI: true,
+        restriction: {
+            latLngBounds: {
+                north: 48.1,
+                south: 46.8,
+                west: -1.7,
+                east: 2.4
+            }
+        },
+        styles: [
+            {
+                featureType: 'poi',
+                elementType: 'labels',
+                stylers: [{ visibility: 'off' }]
+            }
+        ]
     });
-  })).catch(err => console.error(err));
-  document.getElementsByClassName("loadingscreen")[0].remove();
+
+    await fetch("/api/get_places").then(res => res.json().then(data => {
+
+        data.results.forEach(d => {
+            let mark = new google.maps.Marker({
+                map,
+                position: { lat: d.lat, lng: d.long },
+                title: d.name,
+            });
+            markers.push(mark);
+            mark.addListener("click", async () => {
+                try {
+                    myModal.style.display = "block";
+                    document.getElementById("modalcontent").innerHTML = "Chargement...";
+                    let details = (await (await fetch(`/api/places/${d.id}/details`)).json()).data;
+                    let commentaires = (await (await fetch(`/api/places/${d.id}/comments`)).json());
+                    console.log(commentaires);
+                    let name = details.name;
+                    let preview = details.preview.source;
+                    let address = details.address.county;
+                    let wikipedia = details.wikipedia;
+                    let wikipedia_extracts = details.wikipedia_extracts.text;
+                    let contextText = ` <img src="${preview}" alt="Preview Image - ${preview}"> <p>Name : ${name}</p><p>Address : ${address}</p><p>wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a></p> <p>Description  : ${wikipedia_extracts}</p> <h2>Commentaires</h2>`;
+                    if (commentaires.found === false) {
+                        contextText += `<p>${commentaires.msg}</p>`;
+                    } else {
+                        commentaires.comments.forEach(c => {
+                            contextText += `<div class="commentaire"><h3>${c.user}</h3><p>${escapeHtml(c.comment)}</p></div>`;
+                        });
+                    }
+                    document.getElementById('modalcontent').innerHTML = contextText;
+                } catch (error) {
+                    console.error("Erreur lors de la récupération des données :", error);
+                }
+
+            });
+        });
+    })).catch(err => console.error(err));
+    document.getElementsByClassName("loadingscreen")[0].remove();
 }
 
 document.querySelector(".close").addEventListener("click", () => {
-  myModal.style.display = "none";
+    myModal.style.display = "none";
 });
 window.addEventListener("click", (event) => {
-  if (event.target == myModal) {
-    myModal.style.display = "none";
-  }
+    if (event.target == myModal) {
+        myModal.style.display = "none";
+    }
 });
 
 geoloc.addEventListener("click", () => {
-  if (geoIcon.style.display !== "none") {
-    navigator.geolocation.getCurrentPosition(
-      function (pos) {
-        var crd = pos.coords;
+    if (geoIcon.style.display !== "none") {
+        navigator.geolocation.getCurrentPosition(
+            function (pos) {
+                var crd = pos.coords;
 
-        new google.maps.Marker({
-          map,
-          position: { lat: crd.latitude, lng: crd.longitude },
-          title: "bonjour",
-          icon: "/img/geo-blue.png",
-        });
-      },
-      function (err) {
-        console.warn(err);
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0,
-      }
-    );
+                new google.maps.Marker({
+                    map,
+                    position: { lat: crd.latitude, lng: crd.longitude },
+                    title: "bonjour",
+                    icon: "/img/geo-blue.png",
+                });
+            },
+            function (err) {
+                console.warn(err);
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0,
+            }
+        );
 
-    geoIcon.style.display = "none";
-    geoIconBlue.style.display = "block";
-  } else {
-    geoIconBlue.style.display = "none";
-    geoIcon.style.display = "block";
-  }
+        geoIcon.style.display = "none";
+        geoIconBlue.style.display = "block";
+    } else {
+        geoIconBlue.style.display = "none";
+        geoIcon.style.display = "block";
+    }
 });
 
 burger.addEventListener("click", () => {
-  nav.classList.toggle("nav-visible");
-  burger.classList.toggle("cross");
-  if (nav.style.display === "flex") {
-    logoPlace.innerHTML = "";
-    nav.style.display = "none";
-  } else {
-    nav.style.display = "flex";
-    let logo = document.createElement("img");
-    logo.src = "img/logoVDL.png";
-    logo.alt = "Logo Val De Loire";
+    nav.classList.toggle("nav-visible");
+    burger.classList.toggle("cross");
+    if (nav.style.display === "flex") {
+        logoPlace.innerHTML = "";
+        nav.style.display = "none";
+    } else {
+        nav.style.display = "flex";
+        let logo = document.createElement("img");
+        logo.src = "img/logoVDL.png";
+        logo.alt = "Logo Val De Loire";
 
-    logoPlace.appendChild(logo);
-  }
+        logoPlace.appendChild(logo);
+    }
 });
 
 
 mentionslegales.addEventListener("click", () => {
-  myModal.style.display = "block";
-  document.getElementById("modalcontent").innerHTML = `<h1>Mentions Légales</h1>
+    myModal.style.display = "block";
+    document.getElementById("modalcontent").innerHTML = `<h1>Mentions Légales</h1>
 
     <h2>1. Informations légales</h2>
     <p>Raison sociale : [Nom de votre entreprise]</p>

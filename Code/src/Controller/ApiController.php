@@ -104,10 +104,21 @@ class ApiController extends AbstractController
     public function getPlaceComments(string $id, Request $request, CommentairesLieuRepository $commentairesLieuRepository): JsonResponse
     {
         $comments = $commentairesLieuRepository->findBy(['lieu_id' => $id]);
-        if (!$comments) {
+        if (!$comments || count($comments) === 0) {
             return new JsonResponse(['found' => false, 'msg' => 'Aucun commentaire n\'a été trouvé'], 404);
         }
-        return new JsonResponse(['found' => true, 'comments' => $comments]);
+        $commsJson = [];
+        foreach ($comments as $c) {
+            $commsJson[] = [
+                'title' => $c->getTitre(),
+                'comment' => $c->getDescription(),
+                'date' => $c->getCreatedAt(),
+                'note' => $c->getNote(),
+                'user' => $c->getMembre()->getNom() . ' ' . $c->getMembre()->getPrenom(),
+                'user_avatar' => $c->getMembre()->getAvatarUrl()
+            ];
+        }
+        return new JsonResponse(['found' => true, 'comments' => $commsJson]);
     }
 
 }
