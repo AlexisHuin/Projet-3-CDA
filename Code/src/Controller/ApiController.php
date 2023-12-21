@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CommentairesLieuRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,8 +19,8 @@ class ApiController extends AbstractController
         $this->client = $client;
     }
 
-    #[Route('/search', name: 'api.search', methods: ['GET'])]
-    public function ApiSearch(Request $request): JsonResponse
+    #[Route('/get_places', name: 'api.get_places', methods: ['GET'])]
+    public function getPlaces(Request $request): JsonResponse
     {
         $apiUrl = 'https://opentripmap-places-v1.p.rapidapi.com/en/places/bbox?lon_max=2.325511&lat_min=46.784633&lon_min=-1.75033&lat_max=48.199482&limit=500&kinds=cultural,historic,tourist_facilities,foods';
 
@@ -44,33 +45,6 @@ class ApiController extends AbstractController
             return new JsonResponse(['error' => 'An error occurred: ' . $e->getMessage()], 500);
         }
     }
-
-    #[Route('/details', name: 'api.details', methods: ['GET'])]
-    public function ApiDetails(Request $request): JsonResponse
-    {
-        $apiUrl = 'https://opentripmap-places-v1.p.rapidapi.com/en/places/xid/' . $_GET["l"];
-
-        try {
-            $response = $this->client->request('GET', $apiUrl, [
-                'headers' => [
-                    'X-RapidAPI-Host' => 'opentripmap-places-v1.p.rapidapi.com',
-                    'X-RapidAPI-Key' => 'a0da21aed5mshc79b166d2ac2bbdp1f12a8jsn024a611abaf3',
-                ],
-            ]);
-
-            if ($response->getStatusCode() !== 200) {
-                return new JsonResponse(['error' => 'Failed to fetch'], $response->getStatusCode());
-            }
-
-            $data = $response->toArray();
-
-            return new JsonResponse(['data' => $data]);
-        } catch (\Exception $e) {
-            error_log(print_r($e, TRUE));
-            return new JsonResponse(['error' => 'An error occurred: ' . $e->getMessage()], 500);
-        }
-    }
-
     private function processSearchResults(array $data): array
     {
         $results = [];
@@ -99,4 +73,41 @@ class ApiController extends AbstractController
 
         return $results;
     }
+
+    #[Route('/places/{id}/details', name: 'api.place_details', methods: ['GET'])]
+    public function gePlaceDetails(string $id, Request $request): JsonResponse
+    {
+        $apiUrl = 'https://opentripmap-places-v1.p.rapidapi.com/en/places/xid/' . $id;
+
+        try {
+            $response = $this->client->request('GET', $apiUrl, [
+                'headers' => [
+                    'X-RapidAPI-Host' => 'opentripmap-places-v1.p.rapidapi.com',
+                    'X-RapidAPI-Key' => 'a0da21aed5mshc79b166d2ac2bbdp1f12a8jsn024a611abaf3',
+                ],
+            ]);
+
+            if ($response->getStatusCode() !== 200) {
+                return new JsonResponse(['error' => 'Failed to fetch'], $response->getStatusCode());
+            }
+
+            $data = $response->toArray();
+
+            return new JsonResponse(['data' => $data]);
+        } catch (\Exception $e) {
+            error_log(print_r($e, TRUE));
+            return new JsonResponse(['error' => 'An error occurred: ' . $e->getMessage()], 500);
+        }
+    }
+
+    #[Route('/places/{id}/comments', name: 'api.place_comments', methods: ['GET'])]
+    public function getPlaceComments(string $id, Request $request, CommentairesLieuRepository $commentairesLieuRepository): JsonResponse
+    {
+        $comments = $commentairesLieuRepository->findBy(['lieu_id' => $id]);
+        if (!$comments) {
+            return new JsonResponse(['found' => false, 'msg' => 'Aucun commentaire n\'a été trouvé'], 404);
+        }
+        return new JsonResponse(['found' => true, 'comments' => $comments]);
+    }
+
 }

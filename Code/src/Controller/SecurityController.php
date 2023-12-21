@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -63,17 +64,39 @@ class SecurityController extends AbstractController
             $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
 
             $manager->persist($user);
-            $manager->flush();
+            try {
+                $manager->flush();
+            } catch (\Exception $e) {
+                $errorMessage = 'An error occurred while creating the account.';
+                if ($e->getCode() === '1062') {
+                    $errorMessage = 'This email address is already registered.';
+                }
+                $this->addFlash('error', $errorMessage);
+                return $this->redirectToRoute('security.registration');
+            }
+
+            $this->authenticateUser($user);
 
             $this->addFlash(
                 'success',
                 'Votre compte a bien été créé.'
             );
-            return $this->redirectToRoute('security.login');
+            return $this->redirectToRoute('user.index');
         }
 
         return $this->render('pages/security/register.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    public function authenticateUser(User $user)
+    {
+        $token = new UsernamePasswordToken(
+            $user,
+            'main',
+            $user->getRoles()
+        );
+
+        $this->container->get("security.token_storage")->setToken($token);
     }
 }
