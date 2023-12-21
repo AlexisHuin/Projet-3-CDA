@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Contact;
 use App\Entity\Photo;
 use Faker\Factory;
 use Faker\Generator;
@@ -81,6 +82,15 @@ class AppFixtures extends Fixture
             }
 
             $manager->persist($commentairesLieu);
+        }
+
+        for ($i = 0; $i < 50; $i++) {
+            $contact = new Contact();
+            $contact->setEmail($this->faker->email())
+                ->setTitle($this->faker->word())
+                ->setContent($this->faker->text());
+
+            $manager->persist($contact);
         }
         $manager->flush();
     }
