@@ -20,85 +20,82 @@ let mentionslegales = document.querySelector("#mentionslegales_btn");
 
 
 async function initMap() {
-    const zoom = 8.35;
-    var center = new google.maps.LatLng(47.5751, 0.31366);
-    map = new google.maps.Map(document.getElementById("map"), {
-        zoom,
-        center,
-        minZoom: zoom,
-        disableDefaultUI: true,
-        restriction: {
-            latLngBounds: {
-                north: 48.1,
-                south: 46.8,
-                west: -1.7,
-                east: 2.4
-            }
-        },
-        styles: [
-            {
-                featureType: 'poi',
-                elementType: 'labels',
-                stylers: [{ visibility: 'off' }]
-            }
-        ]
+  const zoom = 8.35;
+  var center = new google.maps.LatLng(47.5751, 0.31366);
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom,
+    center,
+    minZoom: zoom,
+    disableDefaultUI: true,
+    restriction: {
+      latLngBounds: {
+        north: 48.1,
+        south: 46.8,
+        west: -1.7,
+        east: 2.4
+      }
+    },
+    styles: [
+      {
+        featureType: 'poi',
+        elementType: 'labels',
+        stylers: [{ visibility: 'off' }]
+      }
+    ]
+  });
+  await fetch("/api/search").then(res => res.json().then(data => {
+    data.results.forEach(d => {
+      let mark = new google.maps.Marker({
+        map,
+        position: { lat: d.lat, lng: d.long },
+        title: d.name,
+      });
+      markers.push(mark);
+      mark.addListener("click", async () => {
+        try {
+          myModal.style.display = "block";
+          document.getElementById("modalcontent").innerHTML = "Chargement...";
+          let response = await fetch("/api/details?l=" + d.id);
+
+
+          if (response.ok) {
+            let data = (await response.json()).data;
+
+            let name = data.name;
+            let preview = data.preview.source;
+            let address = data.address.county;
+            let wikipedia = data.wikipedia;
+            let wikipedia_extracts = data.wikipedia_extracts.text;
+
+            let contextText = ` <img src="${preview}"> <br> <alt="Preview Image - ${preview}"> <br> Name : ${name} <br> Address : ${address} <br> wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a> <br> Description  : ${wikipedia_extracts}`;
+
+
+            document.getElementById('modalcontent').innerHTML = contextText;
+          } else {
+            console.error("La requête a échoué avec le statut :", response.status);
+          }
+        } catch (error) {
+          console.error("Erreur lors de la récupération des données :", error);
+        }
+
+      });
+      window.addEventListener("click", (event) => {
+        if (event.target == document.getElementById("myModal")) {
+          document.getElementById("myModal").style.display = "none";
+        }
+      });
     });
-    await fetch("/api/search").then(res => res.json().then(data => {
-        data.results.forEach(d => {
-            let mark = new google.maps.Marker({
-                map,
-                position: { lat: d.lat, lng: d.long },
-                title: d.name,
-            });
-            markers.push(mark);
-            mark.addListener("click", async () => {
-                try {
-                    myModal.style.display = "block";
-                    document.getElementById("modalcontent").innerHTML = "Chargement...";
-                    let response = await fetch("/api/details?l=" + d.id);
-
-
-              if (response.ok) {
-                let data = (await response.json()).data;
-
-                let name = data.name;
-                let preview = data.preview.source;
-                let address = data.address.county;
-                let wikipedia = data.wikipedia;
-                let wikipedia_extracts = data.wikipedia_extracts.text;
-
-                let contextText = ` <img src="${preview}"> <br> <alt="Preview Image - ${preview}"> <br> Name : ${name} <br> Address : ${address} <br> wikipedia : <a href="${wikipedia}" target="_blank">${wikipedia}</a> <br> Description  : ${wikipedia_extracts}`;
-
-
-                        document.getElementById('modalcontent').innerHTML = contextText;
-                    } else {
-                        console.error("La requête a échoué avec le statut :", response.status);
-                    }
-                } catch (error) {
-                    console.error("Erreur lors de la récupération des données :", error);
-                }
-
-            });
-            window.addEventListener("click", (event) => {
-              if (event.target == document.getElementById("myModal")) {
-                document.getElementById("myModal").style.display = "none";
-              }
-            });
-          });
-        });
-        document.getElementsByClassName("loadingscreen")[0].remove();
-      })
-    )
-    .catch((err) => console.log(err));
+  })).catch(err => console.error(err));
+  document.getElementsByClassName("loadingscreen")[0].remove();
 }
 
 document.querySelector(".close").addEventListener("click", () => {
-    myModal.style.display = "none";
+  myModal.style.display = "none";
 });
 window.addEventListener("click", (event) => {
-    if (event.target == myModal) {
-        myModal.style.display = "none";
-    }
+  if (event.target == myModal) {
+    myModal.style.display = "none";
+  }
 });
 
 geoloc.addEventListener("click", () => {
@@ -150,8 +147,8 @@ burger.addEventListener("click", () => {
 
 
 mentionslegales.addEventListener("click", () => {
-    myModal.style.display = "block";
-    document.getElementById("modalcontent").innerHTML = `<h1>Mentions Légales</h1>
+  myModal.style.display = "block";
+  document.getElementById("modalcontent").innerHTML = `<h1>Mentions Légales</h1>
 
     <h2>1. Informations légales</h2>
     <p>Raison sociale : [Nom de votre entreprise]</p>
@@ -177,5 +174,5 @@ mentionslegales.addEventListener("click", () => {
     <p>[Nom de votre entreprise] décline toute responsabilité quant au contenu des sites externes liés à celui-ci.</p>
 
     <p>Ces mentions légales ont été mises à jour le [Date de la dernière mise à jour].</p>`;
-}); 
+});
 
