@@ -44,6 +44,7 @@ async function initMap() {
     ]
   });
   await fetch("/api/search").then(res => res.json().then(data => {
+    console.log(data)
     data.results.forEach(d => {
       let mark = new google.maps.Marker({
         map,
