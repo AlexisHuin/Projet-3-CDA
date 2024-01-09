@@ -29,8 +29,8 @@
 				<div class="condition">
 					<h1 class='m-3 fw-bold mt-4'>Récompenses pour les Explorateurs de Loire Valley</h1>
 					<p class='fs-2 text ms-4'>Bienvenue dans notre programme de récompenses ! Nous voulons vous remercier de participer à 
-											notre communauté en partageant vos expériences et découvertes au cœur du
-											 magnifique Val de Loire. Gagnez des points en contribuant et échangez-les contre des cadeaux exclusifs</p>
+																							notre communauté en partageant vos expériences et découvertes au cœur du
+																							 magnifique Val de Loire. Gagnez des points en contribuant et échangez-les contre des cadeaux exclusifs</p>
 				</div>
 
 				<button type="button" class="buttonMod btn btn-secondary fs-2 text mt-2 mx-auto text-center  mt-4 p-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Filtrer</button>
@@ -45,7 +45,7 @@
 								<div class="block nonfiltré">
 									<h2>Tout</h2>
 								</div>
-								<div class="block restaurant">
+								<div class="block restauration">
 									<h2>Restauration</h2>
 								</div>
 								<div class="block parc">
@@ -73,36 +73,41 @@
 
 				<div class="container mt-4">
 					{% for cadeau in cadeaux %}
-						<div class="accordion fs-2 text mt-2" id="accordionPanelsStayOpenExample">
-							<div class="accordion-item">
-								<h2 class="accordion-header">
-									<button class="accordion-button fs-1 text" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{ loop.index }}" aria-expanded="true" aria-controls="panelsStayOpen-collapse{{ loop.index }}">
-										{{ cadeau.nom }} - {{ cadeau.categories }}
-									</button>
-								</h2>
-								<div id="panelsStayOpen-collapse{{ loop.index }}" class="accordion-collapse collapse">
-									<div class="accordion-body">
-										<div>{{ cadeau.description }}</div>
-										<div>
-											<a href='{{ cadeau.sitewebpartenaire }}'>
-												{{ cadeau.nompartenaire }}
-											</a>
+						
+							<div class="accordion fs-2 text mt-2 {{ cadeau.categories }}" id="accordionPanelsStayOpenExample{{ loop.index }}">
+								<div class="accordion-item ">
+									<h2 class="accordion-header">
+										<button class="accordion-button fs-1 text" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{ loop.index }}" aria-expanded="true" aria-controls="panelsStayOpen-collapse{{ loop.index }}">
+											{{ cadeau.nom }}
+											-
+											{{ cadeau.categories }}
+										</button>
+									</h2>
+									<div id="panelsStayOpen-collapse{{ loop.index }}" class="accordion-collapse collapse">
+										<div class="accordion-body">
+											<div>{{ cadeau.description }}</div>
+											<div>
+												<a href='{{ cadeau.sitewebpartenaire }}'>
+													{{ cadeau.nompartenaire }}
+												</a>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						
 					{% endfor %}
-					<div id="pagination" class="navigation mt-4 d-flex justify-content-center">
-						{{ knp_pagination_render(cadeaux) }}
-					</div>
 				</div>
-
-			</main>
-			<footer>
-				<div class="gift_footer">
-					<a href="{{ path('user.index') }}">Connectez-vous !</a>
+				<div id="pagination" class="navigation mt-4 d-flex justify-content-center">
+					{{ knp_pagination_render(cadeaux) }}
 				</div>
-			</footer>
+			</div>
 
-		{% endblock %}
+		</main>
+		<footer>
+			<div class="gift_footer">
+				<a href="{{ path('user.index') }}">Connectez-vous !</a>
+			</div>
+		</footer>
+
+	{% endblock %}
