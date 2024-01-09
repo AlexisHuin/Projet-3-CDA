@@ -14,6 +14,7 @@ let geoloc = document.querySelector(".geoloc");
 let geoIcon = document.querySelector(".geoloc-loc");
 let geoIconBlue = document.querySelector(".geoloc-loc_blue");
 let burger = document.querySelector(".burger");
+let imgburger = document.querySelector("#img_burger")
 let nav = document.querySelector("#nav");
 let logoPlace = document.querySelector("#logo");
 let mentionslegales = document.querySelector("#mentionslegales_btn");
@@ -126,9 +127,13 @@ geoloc.addEventListener("click", () => {
 burger.addEventListener("click", () => {
     nav.classList.toggle("nav-visible");
     burger.classList.toggle("cross");
+
     if (nav.style.display === "flex") {
         logoPlace.innerHTML = "";
         nav.style.display = "none";
+      
+        imgburger.src = "img/menu.png";
+        imgburger.alt = "menu";
     } else {
         nav.style.display = "flex";
         let logo = document.createElement("img");
@@ -136,6 +141,9 @@ burger.addEventListener("click", () => {
         logo.alt = "Logo Val De Loire";
 
         logoPlace.appendChild(logo);
+       
+        imgburger.src = "img/cross.png";
+        imgburger.alt = "croix";
     }
 });
 
