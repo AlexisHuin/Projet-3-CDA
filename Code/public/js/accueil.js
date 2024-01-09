@@ -104,6 +104,7 @@ geoloc.addEventListener("click", () => {
                     position: { lat: crd.latitude, lng: crd.longitude },
                     title: "bonjour",
                     icon: "/img/geo-blue.png",
+                    zIndex : 100,
                 });
             },
             function (err) {
