@@ -29,14 +29,12 @@ blocks.forEach((block) => {
 
         if (window.location.pathname === "/") {
             if (block.style.border === "0.5em solid lightgreen") { // vient d'etre cliqué
-                console.log("cliqué sur " + category);
                 markers.forEach(m => {
                     if (category === "nonfiltré" || m.d.kinds.includes(category)) {
                         m.mark.setOpacity(1);
                     }
                 });
             } else {
-                console.log("décliqué sur " + category);
                 markers.forEach(m => {
                     if (category === "nonfiltré" || m.d.kinds.includes(category)) {
                         m.mark.setOpacity(0);
