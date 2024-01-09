@@ -33,7 +33,6 @@ class CadeauCrudController extends AbstractCrudController
             TextField::new('nom'),
             TextField::new('site_web_partenaire'),
             ArrayField::new('description'),
-            TextField::new('categories')
             // DateTimeField::new('created_at'),
             // TextField::new('date_expiration')
 
