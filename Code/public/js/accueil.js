@@ -92,13 +92,14 @@ window.addEventListener("click", (event) => {
     }
 });
 
+let geomarker;
 geoloc.addEventListener("click", () => {
     if (geoIcon.style.display !== "none") {
         navigator.geolocation.getCurrentPosition(
             function (pos) {
                 var crd = pos.coords;
 
-                new google.maps.Marker({
+                geomarker = new google.maps.Marker({
                     map,
                     position: { lat: crd.latitude, lng: crd.longitude },
                     title: "bonjour",
@@ -118,6 +119,7 @@ geoloc.addEventListener("click", () => {
         geoIcon.style.display = "none";
         geoIconBlue.style.display = "block";
     } else {
+        geomarker.setOpacity(0);
         geoIconBlue.style.display = "none";
         geoIcon.style.display = "block";
     }
