@@ -86,12 +86,12 @@ body {
   color: black;
 }
 
-.chateau {
+.castle {
   background-image: url(../img/chateau.jpg);
   background-size: cover;
 }
 
-.histoire {
+.historic {
   background-image: url(../img/histoire.jpg);
   background-size: cover;
 }

@@ -8,7 +8,7 @@ const escapeHtml = (unsafe) => {
 };
 
 let map,
-  markers = [];
+    markers = [];
 let myModal = document.getElementById("myModal");
 let geoloc = document.querySelector(".geoloc");
 let geoIcon = document.querySelector(".geoloc-loc");
@@ -51,7 +51,7 @@ async function initMap() {
                 position: { lat: d.lat, lng: d.long },
                 title: d.name,
             });
-            markers.push(mark);
+            markers.push({ d, mark });
             mark.addListener("click", async () => {
                 try {
                     myModal.style.display = "block";
