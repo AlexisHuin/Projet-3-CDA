@@ -11,7 +11,7 @@ services:
       - ./Code/:/var/www/html/:ro
       - ./nginx/:/etc/nginx/conf.d/
     ports:
-      - ${NGINX_PORT}:80
+      - 42000:80
 
   php:
     build:
@@ -33,13 +33,13 @@ services:
     volumes:
       - ./dump/cda_pt2.sql:/docker-entrypoint-initdb.d/cda_pt2.sql
     environment:
-      - MARIADB_ROOT_PASSWORD=${DB_ROOT_PW}
+      - MARIADB_ROOT_PASSWORD=root
 
   phpmyadmin:
     image: phpmyadmin
     container_name: cda_projet2_phpmyadmin
     ports:
-      - ${PHPMYADMIN_PORT}:80
+      - 43000:80
     links:
       - mariadb:db
     environment:
