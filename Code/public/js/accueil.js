@@ -14,7 +14,7 @@ let geoloc = document.querySelector(".geoloc");
 let geoIcon = document.querySelector(".geoloc-loc");
 let geoIconBlue = document.querySelector(".geoloc-loc_blue");
 let burger = document.querySelector(".burger");
-let imgburger = document.querySelector("#img_burger")
+let imgburger = document.querySelector("#img_burger");
 let nav = document.querySelector("#nav");
 let logoPlace = document.querySelector("#logo");
 let mentionslegales = document.querySelector("#mentionslegales_btn");
@@ -45,12 +45,13 @@ async function initMap() {
     });
 
     await fetch("/api/get_places").then(res => res.json().then(data => {
-
+        const categories = ["castle", ""];
         data.results.forEach(d => {
             let mark = new google.maps.Marker({
                 map,
                 position: { lat: d.lat, lng: d.long },
                 title: d.name,
+                icon: "/img/geo-blue.png",
             });
             markers.push({ d, mark });
             mark.addListener("click", async () => {
@@ -104,7 +105,7 @@ geoloc.addEventListener("click", () => {
                     position: { lat: crd.latitude, lng: crd.longitude },
                     title: "bonjour",
                     icon: "/img/geo-blue.png",
-                    zIndex : 100,
+                    zIndex: 100,
                 });
             },
             function (err) {
@@ -132,7 +133,7 @@ burger.addEventListener("click", () => {
     if (nav.style.display === "flex") {
         logoPlace.innerHTML = "";
         nav.style.display = "none";
-      
+
         imgburger.src = "img/menu.png";
         imgburger.alt = "menu";
     } else {
@@ -142,7 +143,7 @@ burger.addEventListener("click", () => {
         logo.alt = "Logo Val De Loire";
 
         logoPlace.appendChild(logo);
-       
+
         imgburger.src = "img/cross.png";
         imgburger.alt = "croix";
     }
