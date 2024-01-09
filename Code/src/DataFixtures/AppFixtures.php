@@ -49,7 +49,7 @@ class AppFixtures extends Fixture
         }
 
         $date_expiration = new \DateTimeImmutable('now');
-
+        $categories = ['Restauration', 'Parc', 'Boutique', 'Vin', 'Transport'];
         // Cadeaux
         for ($i = 0; $i < 50; $i++) {
             $cadeaux = new Cadeau();
@@ -59,7 +59,7 @@ class AppFixtures extends Fixture
                 ->setDateExpiration($date_expiration)
                 ->setDescription($this->faker->text())
                 ->addMembre($users[mt_rand(0, count($users) - 1)])
-                ->setCategories("bonjour,jaimelavie,promo15");
+                ->setCategories($categories[mt_rand(0,count($categories)-1)]);
 
             $manager->persist($cadeaux);
         }
