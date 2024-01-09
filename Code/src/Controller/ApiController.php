@@ -125,5 +125,4 @@ class ApiController extends AbstractController
         }
         return new JsonResponse(['found' => true, 'comments' => $commsJson]);
     }
-
 }
