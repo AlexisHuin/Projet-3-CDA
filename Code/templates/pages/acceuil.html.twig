@@ -23,12 +23,27 @@
 	</div>
 	<div id="logo"></div>
 	<nav id="nav">
-		<a href="{{ path('user.index') }}"><img src="{{ asset('img/user.svg') }}" alt="Profil"></a>
-		<a href="{{ path('main.index') }}"><img src="{{ asset('img/map.svg') }}" alt="Itinéraire"></a>
-		<a href="{{ path('main.index') }}"><img src="{{ asset('img/group.svg') }}" alt="Géolocalisation"></a>
-		<a href="{{ path('app_gift') }}"><img src="{{ asset('img/gift.svg') }}" alt="Cadeaux"></a>
-		<a id="mentionslegales_btn" href="#"><img src="{{ asset('img/balance.svg') }}" alt="Mentions générales"></a>
-		<a href="{{path('contact.index') }}"><img src="{{ asset('img/contact.svg') }}" alt="Nous contacter"></a>
+		
+			<a href="{{ path('user.index') }}" title="Profil"><img src="{{ asset('img/user.svg') }}" alt="Profil"></a>
+			<p class="text_nav">Profil</p>
+	
+		
+			<a href="{{ path('main.index') }}" title="Itinéraire"><img src="{{ asset('img/map.svg') }}" alt="Itinéraire"></a>
+			<p class="text_nav">Itinéraire</p>
+	
+	
+			<a href="{{ path('main.index') }}" title="Géolocalisation"><img src="{{ asset('img/group.svg') }}" alt="Géolocalisation"></a>
+			<p class="text_nav">Géoloc</p>
+		
+			<a href="{{ path('app_gift') }}" title="Cadeaux"><img src="{{ asset('img/gift.svg') }}" alt="Cadeaux"></a>
+			<p class="text_nav">Cadeaux</p>
+	
+			<a id="mentionslegales_btn" href="#" title="Mentions générales"><img src="{{ asset('img/balance.svg') }}" alt="Mentions générales"></a>
+			<p class="text_nav">Mentions légales</p>
+	
+			<a href="{{path('contact.index') }}" title="Nous contacter"><img src="{{ asset('img/contact.svg') }}" alt="Nous contacter"></a>
+			<p class="text_nav">Contact</p>
+	
 
 	</nav>
 	<!-- Search modal -->
