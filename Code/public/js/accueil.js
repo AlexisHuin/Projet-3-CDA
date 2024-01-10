@@ -47,11 +47,14 @@ async function initMap() {
     await fetch("/api/get_places")
         .then((res) =>
             res.json().then((data) => {
+                const categories = ["restaurant", "castles", "culture", "historic", "interesting_places", "religion"];
                 data.results.forEach((d) => {
+                    const cat = categories.find((c) => d.kinds.split(",").includes(c));
                     let mark = new google.maps.Marker({
                         map,
                         position: { lat: d.lat, lng: d.long },
                         title: d.name,
+                        icon: "/img/markers/" + cat + ".png"
                     });
                     markers.push({ d, mark });
                     mark.addListener("click", async () => {
