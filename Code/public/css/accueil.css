@@ -175,8 +175,9 @@ a[title]:hover:after {
 }
 
 #nav a img {
-  width: 120%;
+  width: 100%;
 }
+
 
 .bottom_button {
   z-index: 1;
@@ -346,6 +347,10 @@ a[title]:hover:after {
 }
 
 @media (min-width: 1320px) {
+  #contact_btn {
+    margin-left: 0.7rem;
+  }
+
   .text_nav {
     display: none;
   }
