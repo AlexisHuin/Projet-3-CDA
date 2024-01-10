@@ -32,8 +32,8 @@ body {
   display: flex;
 }
 
-#searchModalBackdrop #modalHeader>h1,
-#searchModalBackdrop #modalHeader>input {
+#searchModalBackdrop #modalHeader > h1,
+#searchModalBackdrop #modalHeader > input {
   flex: 1;
 }
 
@@ -116,7 +116,7 @@ body {
   background-size: cover;
 }
 
-.modal-footer>button {
+.modal-footer > button {
   flex: 1;
   padding: 0.7em;
 }
@@ -133,7 +133,7 @@ body {
   margin-left: 1em;
 }
 
-#logo>img {
+#logo > img {
   width: 20vw;
   max-width: 180px;
   height: auto;
@@ -156,7 +156,7 @@ body {
   justify-content: center;
 }
 
-#nav>a {
+#nav > a {
   margin: auto;
   width: 60px;
 }
@@ -165,12 +165,12 @@ a[title]:hover:after {
   content: attr(title);
   display: block;
   position: absolute;
-  color: #fff; 
-  border-radius: 5px; 
+  color: #fff;
+  border-radius: 5px;
   z-index: 1000;
-  white-space: nowrap; 
+  white-space: nowrap;
   text-align: center;
-  left: 50%; 
+  left: 50%;
   transform: translateX(-50%);
 }
 
@@ -205,15 +205,15 @@ a[title]:hover:after {
   transition: all 0.2s ease-in-out;
 }
 
-.burger.cross>#burger-line3 {
+.burger.cross > #burger-line3 {
   display: none;
 }
 
-.burger.cross>#burger-line1 {
+.burger.cross > #burger-line1 {
   transform: rotate(45deg) translate(20px, 20px);
 }
 
-.burger.cross>#burger-line2 {
+.burger.cross > #burger-line2 {
   transform: rotate(-45deg) translate(20px, -20px);
 }
 
@@ -300,12 +300,10 @@ a[title]:hover:after {
   .commentaire h3 {
     font-weight: bold;
     font-size: 2em;
-
   }
 
   .commentaire img {
     width: 10%;
-
   }
 
   .modal-content p {
@@ -316,7 +314,6 @@ a[title]:hover:after {
   .modal-content h2 {
     font-weight: bold !important;
     font-size: 3em !important;
-
   }
 
   #modal-content_commentaire {
@@ -329,11 +326,11 @@ a[title]:hover:after {
     height: 6vh;
   }
 
-  .burger.cross>#burger-line1 {
+  .burger.cross > #burger-line1 {
     transform: rotate(45deg) translate(1.5rem, 1.5rem);
   }
 
-  .burger.cross>#burger-line2 {
+  .burger.cross > #burger-line2 {
     transform: rotate(-45deg) translate(1.5rem, -1.5rem);
   }
 
@@ -347,12 +344,9 @@ a[title]:hover:after {
 }
 
 @media (min-width: 1320px) {
-
   .text_nav {
     display: none;
-    
   }
-
 
   #modal-content_commentaire {
     max-width: 76vw;
@@ -373,11 +367,11 @@ a[title]:hover:after {
     height: 7vh;
   }
 
-  .burger.cross>#burger-line1 {
+  .burger.cross > #burger-line1 {
     transform: rotate(45deg) translate(0.6rem, 0.6rem);
   }
 
-  .burger.cross>#burger-line2 {
+  .burger.cross > #burger-line2 {
     transform: rotate(-45deg) translate(0.7rem, -0.9rem);
   }
 
