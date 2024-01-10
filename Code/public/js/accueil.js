@@ -45,13 +45,13 @@ async function initMap() {
     });
 
     await fetch("/api/get_places").then(res => res.json().then(data => {
-        const categories = ["castle", ""];
+        // const categories = ["castle", ""];
         data.results.forEach(d => {
             let mark = new google.maps.Marker({
                 map,
                 position: { lat: d.lat, lng: d.long },
                 title: d.name,
-                icon: "/img/geo-blue.png",
+                // icon: "/img/geo-blue.png",
             });
             markers.push({ d, mark });
             mark.addListener("click", async () => {
