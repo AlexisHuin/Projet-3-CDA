@@ -50,9 +50,12 @@ blocks.forEach((block) => {
         let itemCategory = Array.from(cadeauItem.classList).filter(
           (className) => className !== "accordion-item"
         );
-        itemCategory=itemCategory[itemCategory.length-1]
+        itemCategory = itemCategory[itemCategory.length - 1];
 
-        if (category === "nonfiltré" || selectedCategories.includes(itemCategory.toLowerCase())) {
+        if (
+          category === "nonfiltré" ||
+          selectedCategories.includes(itemCategory.toLowerCase())
+        ) {
           cadeauItem.style.display = "block";
         } else {
           cadeauItem.style.display = "none";

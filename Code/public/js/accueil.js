@@ -32,56 +32,67 @@ async function initMap() {
                 north: 48.1,
                 south: 46.8,
                 west: -1.7,
-                east: 2.4
-            }
+                east: 2.4,
+            },
         },
         styles: [
             {
-                featureType: 'poi',
-                elementType: 'labels',
-                stylers: [{ visibility: 'off' }]
-            }
-        ]
+                featureType: "poi",
+                elementType: "labels",
+                stylers: [{ visibility: "off" }],
+            },
+        ],
     });
 
-    await fetch("/api/get_places").then(res => res.json().then(data => {
-        // const categories = ["castle", ""];
-        data.results.forEach(d => {
-            let mark = new google.maps.Marker({
-                map,
-                position: { lat: d.lat, lng: d.long },
-                title: d.name,
-                // icon: "/img/geo-blue.png",
-            });
-            markers.push({ d, mark });
-            mark.addListener("click", async () => {
-                try {
-                    myModal.style.display = "block";
-                    document.getElementById("modalcontent").innerHTML = "Chargement...";
-                    let details = (await (await fetch(`/api/places/${d.id}/details`)).json()).data;
-                    let commentaires = (await (await fetch(`/api/places/${d.id}/comments`)).json());
-                    console.log(commentaires);
-                    let name = details.name;
-                    let preview = details.preview.source;
-                    let address = details.address.county;
-                    let wikipedia = details.wikipedia;
-                    let wikipedia_extracts = details.wikipedia_extracts.text;
-                    let contextText = ` <img src="${preview}" alt="Preview Image - ${preview}"> <p>Name : ${name}</p><p>Address : ${address}</p><p><a href="${wikipedia}" target="_blank">Wikipedia</a></p> <p>Description  : ${wikipedia_extracts}</p> <h2>Commentaires</h2>`;
-                    if (commentaires.found === false) {
-                        contextText += `<p>${commentaires.msg}</p>`;
-                    } else {
-                        commentaires.comments.forEach(c => {
-                            contextText += `<div class="commentaire"> <div class='commentaire_photo'><h3>${c.user}</h3> <img src='/user_imgs/avatars/${c.user_avatar}'> </div> <p>${escapeHtml(c.comment)}</p></div>`;
-                        });
-                    }
-                    document.getElementById('modalcontent').innerHTML = contextText;
-                } catch (error) {
-                    console.error("Erreur lors de la récupération des données :", error);
-                }
-
-            });
-        });
-    })).catch(err => console.error(err));
+    await fetch("/api/get_places")
+        .then((res) =>
+            res.json().then((data) => {
+                data.results.forEach((d) => {
+                    let mark = new google.maps.Marker({
+                        map,
+                        position: { lat: d.lat, lng: d.long },
+                        title: d.name,
+                    });
+                    markers.push({ d, mark });
+                    mark.addListener("click", async () => {
+                        try {
+                            myModal.style.display = "block";
+                            document.getElementById("modalcontent").innerHTML =
+                                "Chargement...";
+                            let details = (
+                                await (await fetch(`/api/places/${d.id}/details`)).json()
+                            ).data;
+                            let commentaires = await (
+                                await fetch(`/api/places/${d.id}/comments`)
+                            ).json();
+                            console.log(commentaires);
+                            let name = details.name;
+                            let preview = details.preview.source;
+                            let address = details.address.county;
+                            let wikipedia = details.wikipedia;
+                            let wikipedia_extracts = details.wikipedia_extracts.text;
+                            let contextText = ` <img src="${preview}" alt="Preview Image - ${preview}"> <p>Name : ${name}</p><p>Address : ${address}</p><p><a href="${wikipedia}" target="_blank">Wikipedia</a></p> <p>Description  : ${wikipedia_extracts}</p> <h2>Commentaires</h2>`;
+                            if (commentaires.found === false) {
+                                contextText += `<p>${commentaires.msg}</p>`;
+                            } else {
+                                commentaires.comments.forEach((c) => {
+                                    contextText += `<div class="commentaire"> <div class='commentaire_photo'><h3>${c.user
+                                        }</h3> <img src='/user_imgs/avatars/${c.user_avatar
+                                        }'> </div> <p>${escapeHtml(c.comment)}</p></div>`;
+                                });
+                            }
+                            document.getElementById("modalcontent").innerHTML = contextText;
+                        } catch (error) {
+                            console.error(
+                                "Erreur lors de la récupération des données :",
+                                error
+                            );
+                        }
+                    });
+                });
+            })
+        )
+        .catch((err) => console.error(err));
     document.getElementsByClassName("loadingscreen")[0].remove();
 }
 
@@ -178,9 +189,3 @@ mentionslegales.addEventListener("click", () => {
 
     <p>Ces mentions légales ont été mises à jour le [Date de la dernière mise à jour].</p>`;
 });
-
-
-
-
-
-
