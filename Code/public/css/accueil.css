@@ -32,8 +32,8 @@ body {
   display: flex;
 }
 
-#searchModalBackdrop #modalHeader > h1,
-#searchModalBackdrop #modalHeader > input {
+#searchModalBackdrop #modalHeader>h1,
+#searchModalBackdrop #modalHeader>input {
   flex: 1;
 }
 
@@ -86,7 +86,7 @@ body {
   color: black;
 }
 
-.castle {
+.castles {
   background-image: url(../img/chateau.jpg);
   background-size: cover;
 }
@@ -101,7 +101,7 @@ body {
   background-size: cover;
 }
 
-.place {
+.interesting_places {
   background-image: url(../img/place.jpg);
   background-size: cover;
 }
@@ -116,7 +116,7 @@ body {
   background-size: cover;
 }
 
-.modal-footer > button {
+.modal-footer>button {
   flex: 1;
   padding: 0.7em;
 }
@@ -133,7 +133,7 @@ body {
   margin-left: 1em;
 }
 
-#logo > img {
+#logo>img {
   width: 20vw;
   max-width: 180px;
   height: auto;
@@ -156,7 +156,7 @@ body {
   justify-content: center;
 }
 
-#nav > a {
+#nav>a {
   margin: auto;
   width: 60px;
 }
@@ -206,15 +206,15 @@ a[title]:hover:after {
   transition: all 0.2s ease-in-out;
 }
 
-.burger.cross > #burger-line3 {
+.burger.cross>#burger-line3 {
   display: none;
 }
 
-.burger.cross > #burger-line1 {
+.burger.cross>#burger-line1 {
   transform: rotate(45deg) translate(20px, 20px);
 }
 
-.burger.cross > #burger-line2 {
+.burger.cross>#burger-line2 {
   transform: rotate(-45deg) translate(20px, -20px);
 }
 
@@ -279,12 +279,14 @@ a[title]:hover:after {
   #img_burger {
     width: 84%;
   }
+
   .text_nav {
     display: block;
     font-size: 2.5em;
     font-weight: bold;
     text-align: center;
   }
+
   .commentaire {
     border: dashed;
     border-width: 2px 4px;
@@ -327,11 +329,11 @@ a[title]:hover:after {
     height: 6vh;
   }
 
-  .burger.cross > #burger-line1 {
+  .burger.cross>#burger-line1 {
     transform: rotate(45deg) translate(1.5rem, 1.5rem);
   }
 
-  .burger.cross > #burger-line2 {
+  .burger.cross>#burger-line2 {
     transform: rotate(-45deg) translate(1.5rem, -1.5rem);
   }
 
@@ -372,11 +374,11 @@ a[title]:hover:after {
     height: 7vh;
   }
 
-  .burger.cross > #burger-line1 {
+  .burger.cross>#burger-line1 {
     transform: rotate(45deg) translate(0.6rem, 0.6rem);
   }
 
-  .burger.cross > #burger-line2 {
+  .burger.cross>#burger-line2 {
     transform: rotate(-45deg) translate(0.7rem, -0.9rem);
   }
 
