@@ -64,4 +64,11 @@ class UserController extends AbstractController
         return $this->render('pages/user/my_gifts.html.twig');
     }
 
+    #[Route('/logout', name: 'security.logout')]
+    public function logout(): Response
+    {
+        return $this->redirectToRoute('main.index');
+    }
+    
+
 }
